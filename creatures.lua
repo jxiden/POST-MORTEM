@@ -3,7 +3,7 @@ local Talkies = require('libraries/talkies')
 Creature = Object:extend()
 
 function Creature:new()
-	self.image = love.graphics.newImage("sprites/img.png")
+	self.image = gfx.newImage("sprites/img.png")
   self.voice = love.audio.newSource("sfx/talk.wav", "static")
 end
 
