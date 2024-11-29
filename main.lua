@@ -2,6 +2,7 @@ local Talkies = require('libraries/talkies')
 
 function love.load()
   Object = require "libraries/classic"
+  gfx = love.graphics
   
   require "creatures"
   
@@ -20,7 +21,8 @@ function love.update(dt)
 end
 
 function love.draw()
-  love.graphics.newImage("sprites/img2.png")
+  img2 = love.graphics.newImage("sprites/img2.png")
+  gfx.draw(img2, 0,0)
   Talkies.draw()
   creature:draw()
 end
