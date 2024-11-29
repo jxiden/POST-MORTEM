@@ -1,0 +1,34 @@
+local Talkies = require('libraries/talkies')
+
+function love.load()
+  Object = require "libraries/classic"
+  
+  require "creatures"
+  
+  creature = Creature()
+  
+--  Talkies.say("i hate this shit", "Hello World!", {
+--      image=love.graphics.newImage("sprites/img.png"),
+--      talkSound=love.audio.newSource("sfx/talk.wav", "static"),
+--      typedNotTalked=false,
+--      textSpeed="slow"
+--      })
+end
+
+function love.update(dt)
+  Talkies.update(dt)
+end
+
+function love.draw()
+  love.graphics.newImage("sprites/img2.png")
+  Talkies.draw()
+  creature:draw()
+end
+
+function love.keypressed(key)
+  if key == "f" then love.graphics.toggleFullscreen() end
+  if key == "return" then Talkies.onAction()
+  elseif key == "up" then Talkies.prevOption()
+  elseif key == "down" then Talkies.nextOption()
+  end
+end
