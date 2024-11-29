@@ -4,7 +4,7 @@ Creature = Object:extend()
 
 function Creature:new()
 	self.image = love.graphics.newImage("sprites/img.png")
-  self.voice = love.audio.newSource("sfx/talk.wav", "static")
+  self.voice = love.audio.newSource("sfx/SFX_TALK.wav", "static")
 end
 
 
@@ -12,7 +12,7 @@ function Creature:draw()
   Talkies.say("i hate this shit", "Hello World!", {
       image=self.image,
       talkSound=self.voice,
-      typedNotTalked=false,
+      typedNotTalked=true,
       textSpeed="slow"
     })
   Talkies.say("Tutorial", "",
