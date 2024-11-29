@@ -2,27 +2,24 @@
 function love.load()
   Talkies = require('libraries/talkies')
   Object = require "libraries/classic"
+  anim8 = require 'libraries/anim8'
+
   gfx = love.graphics
   
   require "creatures"
   
   creature = Creature()
   
---  Talkies.say("i hate this shit", "Hello World!", {
---      image=love.graphics.newImage("sprites/img.png"),
---      talkSound=love.audio.newSource("sfx/talk.wav", "static"),
---      typedNotTalked=false,
---      textSpeed="slow"
---      })
 end
 
 function love.update(dt)
   Talkies.update(dt)
+  creature:update(dt)
 end
 
 function love.draw()
   img2 = gfx.newImage("sprites/img2.png")
-  gfx.draw(img2, 0,0)
+  gfx.draw(img2)
   Talkies.draw()
   creature:draw()
 end
