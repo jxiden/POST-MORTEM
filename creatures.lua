@@ -4,35 +4,56 @@ Creature = Object:extend()
 
 function Creature:new()
   self.voice = love.audio.newSource("sfx/SFX_TALK.wav", "static")
-  self.spriteSheet = gfx.newImage("sprites/img.png")
-  self.grid = anim8.newGrid(128,128,self.spriteSheet:getWidth(),self.spriteSheet:getHeight())
-  self.animation=anim8.newAnimation(self.grid('1-2', 1),0.2)
+  self.sprite = gfx.newImage("sprites/img.png")
 end
-
-function Creature:update(dt)
-  self.animation:update(dt)
-end
-
 
 function Creature:draw()
-    Talkies.say("...", "...", {
-      image=self.animation:draw(self.spriteSheet),
-      talkSound=self.voice,
-      typedNotTalked=true,
-      textSpeed="slow"
-    })
-  Talkies.say("...", "Hello World!", {
-      image=self.image,
-      talkSound=self.voice,
-      typedNotTalked=true,
-      textSpeed="slow"
-    })
-  Talkies.say("Tutorial", "",
+    --Talkies.say("...", "...", {
+      --image=self.sprite,
+      --talkSound=self.voice,
+      --typedNotTalked=true,
+      --textSpeed="slow"
+    --})
+  Talkies.say("...", "",
     {
+      image=self.sprite,
+      talkSound=self.voice,
+      typedNotTalked=true,
+      textSpeed="slow",
+
       options={
-        {"What's your name?", function() Creature:draw() end},
-        {"What was your life like?", function() Creature:draw() end},
-        {"Where are you?", function() Creature:draw() end}
+        {"What's your name?", function() Creature:name() end},
+        {"What was your life like?", function() Creature:life() end},
+      }
+    })
+end
+
+function Creature:name()
+    Talkies.say("Francis", "My name is Francis, Francis Hatt",
+    {
+      image=self.sprite,
+      talkSound=self.voice,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"How did you die?", function() Creature:die() end},
+        {"What was your life like?", function() Creature:life() end},
+      }
+    })
+end
+
+function Creature:life()
+    Talkies.say("Francis", "I had a plesant life, my wife and I owned a farm in the middle of Virginia.",
+    {
+      image=self.sprite,
+      talkSound=self.voice,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"How did you die?", function() Creature:die() end},
+        {"What was your life like?", function() Creature:life() end},
       }
     })
 end

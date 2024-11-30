@@ -9,19 +9,17 @@ function love.load()
   require "creatures"
   
   creature = Creature()
-  
+  creature:draw()
 end
 
 function love.update(dt)
   Talkies.update(dt)
-  creature:update(dt)
 end
 
 function love.draw()
   img2 = gfx.newImage("sprites/img2.png")
   gfx.draw(img2)
   Talkies.draw()
-  creature:draw()
 end
 
 function love.keypressed(key)
