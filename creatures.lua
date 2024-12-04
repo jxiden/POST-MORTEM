@@ -4,9 +4,16 @@ local Creature = {}
 local avatar;
 local blop
 
+
 function Creature.sayHello()
   f_voice = love.audio.newSource("sfx/SFX_TALK.wav", "static")
   f_sprite = love.graphics.newImage("sprites/img.png")
+
+function Creature:new()
+  f_voice = love.audio.newSource("sfx/SFX_TALK.wav", "static")
+  f_sprite = gfx.newImage("sprites/img.png")
+end
+
 
   Talkies.say("...", "iasdfhasdjf",
     {
