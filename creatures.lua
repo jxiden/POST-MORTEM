@@ -5,49 +5,67 @@ local avatar;
 local blop
 
 function Creature.sayHello()
-  blop = love.audio.newSource("sfx/SFX_TALK.wav", "static")
-  avatar = love.graphics.newImage("sprites/img.png")
+  f_voice = love.audio.newSource("sfx/SFX_TALK.wav", "static")
+  f_sprite = love.graphics.newImage("sprites/img.png")
 
-  Talkies.say("Talkies.lua", "Hello World!", {
-    image=avatar,
-    talkSound=blop,
-    typedNotTalked=true,
-    textSpeed="slow"
-  })
-  Talkies.say( "Tutorial",
+  Talkies.say("...", "iasdfhasdjf",
     {
-      "Talkies is a simple to use messagebox library, it includes;",
-      "Multiple choices,-- UTF8 text,-- Pauses,-- Onstart/OnMessage/Oncomplete functions,-- Complete customization,-- Variable typing speeds amongst other things."
-    },
-    {
-      image=avatar,
-      talkSound=blop,
+      image=f_sprite,
+      talkSound=f_voice,
       typedNotTalked=true,
-      onstart = function(dialog)
-        print("are we showing:", dialog:isShown())
-      end,
-      onmessage = function(dialog, left)
-        print(left .. " messages left in the dialog, is showing:", dialog:isShown())
-      end,
-      oncomplete = function(dialog)
-        print("are we still showing:", dialog:isShown())
-      end
-    }
-  )
+      textSpeed="slow",
+
+      options={
+        {"What's your name?", function() Creature.name() end},
+        {"What was your life like?", function() Creature.life() end},
+      }
+    })
 end
 
-function Creature.sayGoodbye()
-  Talkies.say(
-    "Goodbye",
-    "See ya around!",
+function Creature.name()
+    Talkies.say("Francis", "My name is Francis Hatt",
     {
-      image=avatar,
-      talkSound=blop,
-      typedNotTalked=false,
-      oncomplete=function() end,
-      titleColor = {1, 0, 0}
-    }
-  )
+      image=f_sprite,
+      talkSound=f_voice,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"How did you die?", function() Creature.die() end},
+        {"What was your life like?", function() Creature.life() end},
+      }
+    })
 end
+
+function Creature.life()
+    Talkies.say("Francis", "I had a plesant life, my wife and I owned a small farm near Louisa County. We sold eggs to locals and took care of a few cows, cats, and chickens. My wife was usually the one taking care of her garden, but I helped her out too.",
+    {
+      image=f_sprite,
+      talkSound=f_voice,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"How did you die?", function() Creature.die() end},
+        {"What was your life like?", function() Creature.life() end},
+      }
+    })
+end
+
+function Creature.die()
+    Talkies.say("Francis", "cancer",
+    {
+      image=f_sprite,
+      talkSound=f_voice,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"How did you die?", function() Creature.die() end},
+        {"What was your life like?", function() Creature.life() end},
+      }
+    })
+end
+
 
 return Creature
