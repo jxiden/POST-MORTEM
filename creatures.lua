@@ -1,68 +1,53 @@
 local Talkies = require('libraries/talkies')
 
-Creature = Object:extend()
+local Creature = {}
+local avatar;
+local blop
 
-function Creature:new()
-  self.voice = love.audio.newSource("sfx/SFX_TALK.wav", "static")
-  self.sprite = gfx.newImage("sprites/img.png")
-end
+function Creature.sayHello()
+  blop = love.audio.newSource("sfx/SFX_TALK.wav", "static")
+  avatar = love.graphics.newImage("sprites/img.png")
 
-function Creature:draw()
-  Talkies.say("...", "iasdfhasdjf",
+  Talkies.say("Talkies.lua", "Hello World!", {
+    image=avatar,
+    talkSound=blop,
+    typedNotTalked=true,
+    textSpeed="slow"
+  })
+  Talkies.say( "Tutorial",
     {
-      image=self.sprite,
-      talkSound=self.voice,
-      typedNotTalked=true,
-      textSpeed="slow",
-
-      options={
-        {"What's your name?", function() Creature:name() end},
-        {"What was your life like?", function() Creature:life() end},
-      }
-    })
-end
-
-function Creature:name()
-    Talkies.say("Francis", "My name is Francis Hatt",
+      "Talkies is a simple to use messagebox library, it includes;",
+      "Multiple choices,-- UTF8 text,-- Pauses,-- Onstart/OnMessage/Oncomplete functions,-- Complete customization,-- Variable typing speeds amongst other things."
+    },
     {
-      image=self.sprite,
-      talkSound=self.voice,
+      image=avatar,
+      talkSound=blop,
       typedNotTalked=true,
-      textSpeed="slow",
-      
-      options={
-        {"How did you die?", function() Creature:die() end},
-        {"What was your life like?", function() Creature:life() end},
-      }
-    })
+      onstart = function(dialog)
+        print("are we showing:", dialog:isShown())
+      end,
+      onmessage = function(dialog, left)
+        print(left .. " messages left in the dialog, is showing:", dialog:isShown())
+      end,
+      oncomplete = function(dialog)
+        print("are we still showing:", dialog:isShown())
+      end
+    }
+  )
 end
 
-function Creature:life()
-    Talkies.say("Francis", "I had a plesant life, my wife and I owned a small farm near Louisa County. We sold eggs to locals and took care of a few cows, cats, and chickens. My wife was usually the one taking care of her garden, but I helped her out too.",
+function Creature.sayGoodbye()
+  Talkies.say(
+    "Goodbye",
+    "See ya around!",
     {
-      image=self.sprite,
-      talkSound=self.voice,
-      typedNotTalked=true,
-      textSpeed="slow",
-      
-      options={
-        {"How did you die?", function() Creature:die() end},
-        {"What was your life like?", function() Creature:life() end},
-      }
-    })
+      image=avatar,
+      talkSound=blop,
+      typedNotTalked=false,
+      oncomplete=function() end,
+      titleColor = {1, 0, 0}
+    }
+  )
 end
 
-function Creature:die()
-    Talkies.say("Francis", "cancer",
-    {
-      image=self.sprite,
-      talkSound=self.voice,
-      typedNotTalked=true,
-      textSpeed="slow",
-      
-      options={
-        {"How did you die?", function() Creature:die() end},
-        {"What was your life like?", function() Creature:life() end},
-      }
-    })
-end
+return Creature

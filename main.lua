@@ -1,15 +1,13 @@
-
+Talkies = require('libraries/talkies')
+anim8 = require 'libraries/anim8'
 function love.load()
-  Talkies = require('libraries/talkies')
-  Object = require "libraries/classic"
-  anim8 = require 'libraries/anim8'
+
 
   gfx = love.graphics
   
-  require "creatures"
+  Creature = require "creatures"
   
-  creature = Creature()
-  creature:draw()
+  Creature.sayHello()
 end
 
 function love.update(dt)
