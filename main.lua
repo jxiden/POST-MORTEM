@@ -16,7 +16,7 @@ anim8 = require 'libraries/anim8'
 --6: 
 
 function love.load()
-
+  love.window.setTitle("MEAT")
   love.window.setMode(800,600)
   gfx = love.graphics
   
