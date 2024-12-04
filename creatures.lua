@@ -8,13 +8,7 @@ function Creature:new()
 end
 
 function Creature:draw()
-    --Talkies.say("...", "...", {
-      --image=self.sprite,
-      --talkSound=self.voice,
-      --typedNotTalked=true,
-      --textSpeed="slow"
-    --})
-  Talkies.say("...", "",
+  Talkies.say("...", "iasdfhasdjf",
     {
       image=self.sprite,
       talkSound=self.voice,
@@ -29,7 +23,7 @@ function Creature:draw()
 end
 
 function Creature:name()
-    Talkies.say("Francis", "My name is Francis, Francis Hatt",
+    Talkies.say("Francis", "My name is Francis Hatt",
     {
       image=self.sprite,
       talkSound=self.voice,
