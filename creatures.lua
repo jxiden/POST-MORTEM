@@ -9,13 +9,7 @@ function Creature.sayHello()
   f_voice = love.audio.newSource("sfx/SFX_TALK.wav", "static")
   f_sprite = love.graphics.newImage("sprites/img.png")
 
-function Creature:new()
-  f_voice = love.audio.newSource("sfx/SFX_TALK.wav", "static")
-  f_sprite = gfx.newImage("sprites/img.png")
-end
-
-
-  Talkies.say("...", "iasdfhasdjf",
+  Talkies.say("...", "Hello there youngster.",
     {
       image=f_sprite,
       talkSound=f_voice,
@@ -23,8 +17,7 @@ end
       textSpeed="slow",
 
       options={
-        {"What's your name?", function() Creature.name() end},
-        {"What was your life like?", function() Creature.life() end},
+        {"What's your name?", function() Creature.name() end}
       }
     })
 end
@@ -45,7 +38,7 @@ function Creature.name()
 end
 
 function Creature.life()
-    Talkies.say("Francis", "I had a plesant life, my wife and I owned a small farm near Louisa County. We sold eggs to locals and took care of a few cows, cats, and chickens. My wife was usually the one taking care of her garden, but I helped her out too.",
+    Talkies.say("Francis", "I had a pleasant life. My wife Mabel and I owned a small farm near Louisa County. We sold eggs to locals and took care of a few cows, cats, and chickens. My wife was usually the one taking care of her garden, but I helped her out too.",
     {
       image=f_sprite,
       talkSound=f_voice,
@@ -60,7 +53,7 @@ function Creature.life()
 end
 
 function Creature.die()
-    Talkies.say("Francis", "cancer",
+    Talkies.say("Francis", "I died of cancer.",
     {
       image=f_sprite,
       talkSound=f_voice,
