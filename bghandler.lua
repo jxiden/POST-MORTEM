@@ -1,25 +1,25 @@
 function load_backgrounds()
-bg1_frames={}
-bg1=gfx.newImage("sprites/bg1-2-sprite.png")
-bg1_width=bg1:getWidth()
-bg1_height=bg1:getHeight()
-bg1_framewidth=800
-bg1_frameheight=600
-  bg1_currentframe=1
-  for i=0,9 do 
-    table.insert(bg1_frames,gfx.newQuad(i*bg1_framewidth,0,bg1_framewidth,bg1_frameheight,bg1_width,bg1_height))
-    end 
+  bg1 = {}
+    bg1.spriteSheet = gfx.newImage("sprites/bg1-2-sprite.png")
+    bg1.grid = anim8.newGrid(800,600, bg1.spriteSheet:getWidth(), bg1.spriteSheet:getHeight())
+    
+    bg1.animation = anim8.newAnimation(bg1.grid('1-10', 1),0.2)
+    
+  bg2 = {}
+    bg2.spriteSheet = gfx.newImage("sprites/bg2-sprite.png")
+    bg2.grid = anim8.newGrid(800,600, bg2.spriteSheet:getWidth(), bg2.spriteSheet:getHeight())
+    
+    bg2.animation = anim8.newAnimation(bg2.grid('1-20', 1),0.2)
+    
 end
 
 
 function bg_update(dt)
-  bg1_currentframe=bg1_currentframe+dt*8
-  if bg1_currentframe>10 then
-    bg1_currentframe=1
-  end
-  bg1_frameNum=bg1_frames[math.floor(bg1_currentframe)]
+  --bg1.animation:update(dt)
+  bg2.animation:update(dt)
 end
 
 function bg_draw()
-  gfx.draw(bg1,bg1_frameNum,0,0)
-  end
+  --bg1.animation:draw(bg1.spriteSheet,0,0)
+  bg2.animation:draw(bg2.spriteSheet,0,0)
+end

@@ -41,7 +41,9 @@ function love.draw()
 end
 
 function love.keypressed(key)
-  if key == "f" then love.graphics.toggleFullscreen() end
+  if key == "f" then 
+    love.window.setFullscreen(true)
+  end
   if key == "return" or key=="space" then Talkies.onAction()
   elseif key == "up" then Talkies.prevOption()
   elseif key == "down" then Talkies.nextOption()
