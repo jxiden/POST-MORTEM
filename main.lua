@@ -1,13 +1,17 @@
 Talkies = require('libraries/talkies')
 anim8 = require 'libraries/anim8'
 
+GAMEMODE = 1
+GAMEPLAYMODES = 1
 
 --GAMEMODES
+--0: SPLASHSCREENS
 --1: TITLESCREEN
 --2: OPTIONS(?)
 --3: GAMEPLAY
 
 --GAMEPLAYMODES
+--0: DUMMY 
 --1: FRANCIS HATT 
 --2: 
 --3:
@@ -29,15 +33,20 @@ function love.load()
 end
 
 function love.update(dt)
+  
+  
   Talkies.update(dt)
   bg_update(dt)
 end
 
 function love.draw()
-  bg_draw()
-  --img2 = gfx.newImage("sprites/img2.png")
-  --gfx.draw(img2)
-  Talkies.draw()
+  if GAMEMODE == 1 then
+    img2 = gfx.newImage("sprites/bg2-sprite.png")
+    gfx.draw(img2)  
+  elseif GAMEMODE == 3 then
+    bg_draw()
+    Talkies.draw()
+  end
 end
 
 function love.keypressed(key)
