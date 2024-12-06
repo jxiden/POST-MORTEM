@@ -1,9 +1,13 @@
 Talkies = require('libraries/talkies')
 anim8 = require 'libraries/anim8'
+flux = require 'libraries/flux'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 0
+GAMEMODE = 2
 GAMEPLAYMODES = 1
+
+ball = {x=0,y=0}
+
 
 --TODO:
 --SPLIT ALL DATA INCLUDES INTO RESPECTIVE FILES TO BE LOADED AT LOVE.LOAD
@@ -20,7 +24,7 @@ GAMEPLAYMODES = 1
 --3: GAMEPLAY
 
 --GAMEPLAYMODES
---0: DUMMY 
+--0: DUMMY/INTRO 
 --1: FRANCIS HATT 
 --2: 
 --3:
@@ -54,6 +58,7 @@ function love.load()
 end
 
 function love.update(dt)
+  flux.update(dt)
   if GAMEMODE == 0 then
     ssLen = 3
     ssTimer = ssTimer+dt
@@ -63,7 +68,7 @@ function love.update(dt)
   elseif GAMEMODE == 1 then
     
   elseif GAMEMODE == 2 then 
-    
+    flux.to(ball, 1, {x = 200, y = 0})--:ease("circinout")
   elseif GAMEMODE == 3 then
     Talkies.update(dt)
     bg_update(dt)
@@ -77,7 +82,9 @@ function love.draw()
   elseif GAMEMODE == 1 then
     TitleScreen()
   elseif GAMEMODE == 2 then
-    Options()
+    --Options()
+    testimg = gfx.newImage("sprites/test.png")
+    gfx.draw(testimg,ball.x,ball.y)
   elseif GAMEMODE == 3 then
     MainGameLoop()
   end
