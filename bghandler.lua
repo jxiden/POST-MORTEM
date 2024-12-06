@@ -1,4 +1,4 @@
-function load_backgrounds()
+function loadBackgrounds()
   bg1 = {}
     bg1.spriteSheet = gfx.newImage("sprites/bg1-2-sprite.png")
     bg1.grid = anim8.newGrid(800,600, bg1.spriteSheet:getWidth(), bg1.spriteSheet:getHeight())

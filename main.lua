@@ -1,8 +1,8 @@
 Talkies = require('libraries/talkies')
 anim8 = require 'libraries/anim8'
 
-
-GAMEMODE = 1
+--CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
+GAMEMODE = 0
 GAMEPLAYMODES = 1
 
 --TODO:
@@ -33,28 +33,31 @@ function love.load()
   love.window.setTitle("MEAT")
   love.window.setMode(800,600)
   
+  ssTimer = 0
+  
   --graphics
   gfx = love.graphics
   require "gfx"
-  LoadGraphics()
-  LoadFonts()
+  loadGraphics()
+  loadFonts()
   Creature = require "creatures"
   
   Creature.sayHello()
   
   require "bghandler"
-  load_backgrounds()
+  loadBackgrounds()
   
   --music/sfx
   snd = love.audio
   require "sounds"
-  load_sounds()
+  loadSounds()
 end
 
 function love.update(dt)
-  if GAMEMODE == 0 then 
-  ssTimer = ssTimer+dt
-    if ssTimer == 180
+  if GAMEMODE == 0 then
+    ssLen = 3
+    ssTimer = ssTimer+dt
+    if ssTimer >= ssLen then
       GAMEMODE = 1
     end
   elseif GAMEMODE == 1 then
@@ -91,7 +94,11 @@ function love.keypressed(key)
 end
 
 function SplashScreen()
-  
+  splashScreenArt = gfx.newImage("sprites/splashscreen.png")
+  gfx.draw(splashScreenArt,0,0)
+  gfx.setColor(1,1,1)
+  gfx.print(ssTimer,fontDebug, 0, 0)
+  sfx_NOISE:play()
   end
 
 function TitleScreen()
@@ -101,7 +108,7 @@ function TitleScreen()
   gfx.draw(img2) 
   x, y = love.mouse.getPosition( )  
   love.graphics.setColor(1,1,1)
-  gfx.print("POST-MORTEM",fontTitle,0,125)
+  gfx.print("POST-MORTEM",fontTitle,20,100)
   gfx.print("START GAME",fontTextSM,220,300)
   gfx.print("OPTIONS",fontTextSM,270,360)
   

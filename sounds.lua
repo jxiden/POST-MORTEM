@@ -1,4 +1,4 @@
-function load_sounds()
+function loadSounds()
 mus_title = snd.newSource("music/MUS_TITLE.mp3", "stream")
 sfx_talk_f =  snd.newSource("sfx/SFX_Talk.wav", "static")
 sfx_menu_select =  snd.newSource("sfx/SFX_Menu_Select.wav", "static")
