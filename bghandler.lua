@@ -9,7 +9,7 @@ function loadBackgrounds()
     bg2.spriteSheet = gfx.newImage("sprites/bg2-sprite.png")
     bg2.grid = anim8.newGrid(800,600, bg2.spriteSheet:getWidth(), bg2.spriteSheet:getHeight())
     
-    bg2.animation = anim8.newAnimation(bg2.grid('1-20', 1),0.2)
+    bg2.animation = anim8.newAnimation(bg2.grid('1-5', '1-4'),0.2)
     
 end
 
