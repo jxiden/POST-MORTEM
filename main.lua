@@ -5,6 +5,14 @@ anim8 = require 'libraries/anim8'
 GAMEMODE = 1
 GAMEPLAYMODES = 1
 
+--TODO:
+--SPLIT ALL DATA INCLUDES INTO RESPECTIVE FILES TO BE LOADED AT LOVE.LOAD
+  --SOUNDS: DONE
+  --GRAPHICS: 
+--CREATE FADEIN/FADEOUT ROUTINES THAT CAN BE CALLED ON A DIME
+--
+
+
 --GAMEMODES
 --0: SPLASHSCREENS
 --1: TITLESCREEN
@@ -25,9 +33,10 @@ function love.load()
   love.window.setTitle("MEAT")
   love.window.setMode(800,600)
   
-  
+  --graphics
   gfx = love.graphics
-  require "fonts"
+  require "gfx"
+  LoadGraphics()
   LoadFonts()
   Creature = require "creatures"
   
@@ -37,13 +46,17 @@ function love.load()
   load_backgrounds()
   
   --music/sfx
+  snd = love.audio
   require "sounds"
   load_sounds()
 end
 
 function love.update(dt)
   if GAMEMODE == 0 then 
-    
+  ssTimer = ssTimer+dt
+    if ssTimer == 180
+      GAMEMODE = 1
+    end
   elseif GAMEMODE == 1 then
     
   elseif GAMEMODE == 2 then 
@@ -82,8 +95,9 @@ function SplashScreen()
   end
 
 function TitleScreen()
+  mus_title:play()
   img2 = gfx.newImage("sprites/img2.png")
-  love.graphics.setColor(0.3,0.3,0.3)
+  gfx.setColor(0.3,0.3,0.3)
   gfx.draw(img2) 
   x, y = love.mouse.getPosition( )  
   love.graphics.setColor(1,1,1)
