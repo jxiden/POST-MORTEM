@@ -3,7 +3,7 @@ anim8 = require 'libraries/anim8'
 flux = require 'libraries/flux'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 2
+GAMEMODE = 3
 GAMEPLAYMODES = 1
 
 ball = {x=0,y=0}

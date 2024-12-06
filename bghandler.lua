@@ -9,17 +9,23 @@ function loadBackgrounds()
     bg2.spriteSheet = gfx.newImage("sprites/bg2-sprite.png")
     bg2.grid = anim8.newGrid(800,600, bg2.spriteSheet:getWidth(), bg2.spriteSheet:getHeight())
     
-    bg2.animation = anim8.newAnimation(bg2.grid('1-5', '1-4'),0.2)
+    bg2.animation = anim8.newAnimation(bg2.grid('1-5', '1-4'),0.1)
+    
+  bg3 = {}
+    bg3.spriteSheet = gfx.newImage("sprites/bg3-sprite.png")
+    bg3.grid = anim8.newGrid(800,600, bg3.spriteSheet:getWidth(), bg3.spriteSheet:getHeight())
+    
+    bg3.animation = anim8.newAnimation(bg3.grid('1-5', '1-3'),0.1)
     
 end
 
 
 function bg_update(dt)
   --bg1.animation:update(dt)
-  bg2.animation:update(dt)
+  bg3.animation:update(dt)
 end
 
 function bg_draw()
   --bg1.animation:draw(bg1.spriteSheet,0,0)
-  bg2.animation:draw(bg2.spriteSheet,0,0)
+  bg3.animation:draw(bg3.spriteSheet,0,0)
 end
