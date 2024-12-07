@@ -6,7 +6,7 @@ local blop
 
 
 function Creature.sayHello()
-  f_sprite = gfx.newImage("sprites/img.png")
+  f_sprite = gfx.newImage("sprites/g1-1.png")
 
   Talkies.say("...", "Hello there youngster.",
     {
