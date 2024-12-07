@@ -3,10 +3,10 @@ anim8 = require 'libraries/anim8'
 flux = require 'libraries/flux'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 3
+GAMEMODE = 0
 INTERVIEW = 1
 
-ball = {x=0,y=0}
+bgclr = {r=0,g=0,b=0}
 ttlOption = 0
 
 --TODO:
@@ -60,6 +60,8 @@ function love.update(dt)
   flux.update(dt)
   if GAMEMODE == 0 then
     ssLen = 3
+    fadeIn_SS = {f=255}
+    flux.to(fadeIn_SS, 1, {f=0})--:ease("circinout")
     ssTimer = ssTimer+dt
     if ssTimer >= ssLen then
       GAMEMODE = 1
@@ -67,7 +69,6 @@ function love.update(dt)
   elseif GAMEMODE == 1 then
     
   elseif GAMEMODE == 2 then 
-    flux.to(ball, 1, {x = 200, y = 0})--:ease("circinout")
   elseif GAMEMODE == 3 then
     Talkies.update(dt)
     bg_update(dt)
@@ -111,6 +112,7 @@ end
 
 function SplashScreen()
   splashScreenArt = gfx.newImage("sprites/splashscreen.png")
+  gfx.setColor(0,0,0,fadeIn_SS.f)
   gfx.draw(splashScreenArt,0,0)
   gfx.setColor(1,1,1)
   gfx.print(ssTimer,fontDebug, 0, 0)
@@ -150,7 +152,6 @@ function MainGameLoop()
   Talkies.draw()
 end
 
-function TweenTest()
-  testimg = gfx.newImage("sprites/test.png")
-  gfx.draw(testimg,ball.x,ball.y)
+function BlackToWhite()
+  gfx.setBackgroundColor(bgclr.r/100,bgclr.g/100,bgclr.b/100)
   end

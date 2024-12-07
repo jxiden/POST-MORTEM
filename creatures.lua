@@ -37,7 +37,7 @@ function Creature.name()
 end
 
 function Creature.life()
-    Talkies.say("Francis", "I had a pleasant life. My wife Mabel and I owned a small farm near Louisa County. We sold eggs to locals and took care of a few cows, cats, and chickens. My wife was usually the one taking care of her garden, but I helped her out too.",
+    Talkies.say("Francis", "I had a pleasant life. My wife Mabel and I owned a small farm in Louisa County. We sold eggs to locals and took care of a few cows, cats, and chickens. My wife was usually the one taking care of her garden, but I helped her out too.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
