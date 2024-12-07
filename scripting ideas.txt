@@ -2,7 +2,7 @@ SCRIPTING:
 
 TUTORIAL/INTRO DIALOGUE:
 
-???: pleased to meet you! won't you guess my name? you're probably wondering why you're here instead of spending your precious afterlife ding something relaxing. well, you've somehow lived the most neutral life possible. i don't know how you did it kid, but you did, and now i've selected you to become my new secretary! your new job is to wait at the gates of our precious little limbo and interview the recently deceased, ya got it? alright. have fun!
+???: pleased to meet you! won't you guess my name? you're probably wondering why you're here instead of spending your precious afterlife ding something relaxing. well, you've somehow lived the most neutral life possible. i don't know how you did it, but you did, and now i've selected you to become my new secretary! your new job is to wait at the gates of our precious little limbo and interview the recently deceased, ya got it? alright. have fun!
 
 
 Francis Hatt: 

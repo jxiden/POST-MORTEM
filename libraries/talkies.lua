@@ -31,7 +31,8 @@ end
 
 local function playSound(sound, pitch)
   if type(sound) == "userdata" then
-    sound:setPitch(pitch or 1)
+    --sound:setPitch(pitch or 1)
+    snd.stop(sound)
     sound:play()
   end
 end

@@ -4,10 +4,10 @@ flux = require 'libraries/flux'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
 GAMEMODE = 3
-GAMEPLAYMODES = 1
+INTERVIEW = 1
 
 ball = {x=0,y=0}
-
+ttlOption = 0
 
 --TODO:
 --SPLIT ALL DATA INCLUDES INTO RESPECTIVE FILES TO BE LOADED AT LOVE.LOAD
@@ -23,14 +23,13 @@ ball = {x=0,y=0}
 --2: OPTIONS(?)
 --3: GAMEPLAY
 
---GAMEPLAYMODES
---0: DUMMY/INTRO 
+--INTERVIEW
+--0: INTRO 
 --1: FRANCIS HATT 
 --2: 
 --3:
 --4: 
 --5:
---6: 
 
 function love.load()
   --setup
@@ -83,8 +82,7 @@ function love.draw()
     TitleScreen()
   elseif GAMEMODE == 2 then
     --Options()
-    testimg = gfx.newImage("sprites/test.png")
-    gfx.draw(testimg,ball.x,ball.y)
+    TweenTest()
   elseif GAMEMODE == 3 then
     MainGameLoop()
   end
@@ -94,6 +92,17 @@ function love.keypressed(key)
   if key == "f" then 
     love.window.setFullscreen(true)
   end
+  
+  if key == "down" and GAMEMODE == 1 and ttlOption == 0 then
+    ttlOption = 1
+    snd.stop(sfx_ttlSelect)
+    sfx_ttlSelect:play()
+  elseif key == "up" and GAMEMODE == 1 and ttlOption == 1 then
+    ttlOption = 0 
+    snd.stop(sfx_ttlSelect)
+    sfx_ttlSelect:play()
+  end
+  
   if key == "return" or key=="space" then Talkies.onAction()
   elseif key == "up" then Talkies.prevOption()
   elseif key == "down" then Talkies.nextOption()
@@ -111,13 +120,23 @@ function SplashScreen()
 function TitleScreen()
   mus_title:play()
   img2 = gfx.newImage("sprites/img2.png")
-  gfx.setColor(0.3,0.3,0.3)
+  gfx.setColor(0.3,0.3,0.4)
   gfx.draw(img2) 
   x, y = love.mouse.getPosition( )  
-  love.graphics.setColor(1,1,1)
+  gfx.setColor(1,1,1)
   gfx.print("POST-MORTEM",fontTitle,20,100)
-  gfx.print("START GAME",fontTextSM,220,300)
-  gfx.print("OPTIONS",fontTextSM,270,360)
+  
+  if ttlOption == 0 then
+    gfx.setColor(1,1,1)
+    gfx.print("START GAME",fontTextSM,220,300)
+    gfx.setColor(0.5,0.5,0.5)
+    gfx.print("OPTIONS",fontTextSM,270,360)
+  elseif ttlOption == 1 then 
+    gfx.setColor(1,1,1)
+    gfx.print("OPTIONS",fontTextSM,270,360)
+    gfx.setColor(0.5,0.5,0.5)
+    gfx.print("START GAME",fontTextSM,220,300)
+  end
   
   
 end
@@ -129,4 +148,9 @@ end
 function MainGameLoop()
   bg_draw()
   Talkies.draw()
+end
+
+function TweenTest()
+  testimg = gfx.newImage("sprites/test.png")
+  gfx.draw(testimg,ball.x,ball.y)
   end
