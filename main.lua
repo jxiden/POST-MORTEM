@@ -3,7 +3,7 @@ anim8 = require 'libraries/anim8'
 flux = require 'libraries/flux'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 3
+GAMEMODE = 0
 INTERVIEW = 1
 
 
