@@ -83,6 +83,8 @@ function love.update(dt)
   elseif GAMEMODE == 3 then
     Talkies.update(dt)
     bg_update(dt)
+  elseif GAMEMODE == 4 then
+    
   end
 
 end
@@ -93,32 +95,63 @@ function love.draw()
   elseif GAMEMODE == 1 then
     TitleScreen()
   elseif GAMEMODE == 2 then
-    --Options()
-    TweenTest()
+    Options()
   elseif GAMEMODE == 3 then
     MainGameLoop()
+  elseif GAMEMODE == 4 then
+    Credits()
   end
 end
 
 function love.keypressed(key)
-  if key == "f" then 
-    love.window.setFullscreen(true)
+  --if key == "f" then 
+  --  love.window.setFullscreen(true)
+  --end
+  if GAMEMODE == 1 then
+    if ttlOption == 0 then
+      if key == "down" then
+        ttlOption = 1
+        snd.stop(sfx_ttlSelect)
+        sfx_ttlSelect:play()
+      elseif key == "return" then
+        mus_title:stop()
+        GAMEMODE = 3
+    if ttlOption == 1 then
+      if key == "down" then
+        ttlOption = 2
+        snd.stop(sfx_ttlSelect)
+        sfx_ttlSelect:play()  
+      elseif key == "up" then
+        ttlOption = 0 
+        snd.stop(sfx_ttlSelect)
+        sfx_ttlSelect:play()
+      elseif key == "return" then
+        mus_title:stop()
+        GAMEMODE = 2
+      end
+    if ttlOption == 2 then
+      if key == "up" then
+        ttlOption = 1 
+        snd.stop(sfx_ttlSelect)
+        sfx_ttlSelect:play()  
+      elseif key == "return" then
+        mus_title:stop()
+        GAMEMODE = 4
+      end
   end
-  
-  if key == "down" and GAMEMODE == 1 and ttlOption == 0 then
-    ttlOption = 1
-    snd.stop(sfx_ttlSelect)
-    sfx_ttlSelect:play()
-  elseif key == "up" and GAMEMODE == 1 and ttlOption == 1 then
-    ttlOption = 0 
-    snd.stop(sfx_ttlSelect)
-    sfx_ttlSelect:play()
+  if GAMEMODE == 2 then 
+    
   end
-  
-  if key == "return" or key=="space" then Talkies.onAction()
-  elseif key == "up" then Talkies.prevOption()
-  elseif key == "down" then Talkies.nextOption()
+  if GAMEMODE == 3 then
+    if key == "return" or key=="space" then 
+      Talkies.onAction()
+    elseif key == "up" then 
+      Talkies.prevOption()
+    elseif key == "down" then 
+      Talkies.nextOption()
+    end
   end
+
 end
 
 function SplashScreen()
@@ -144,11 +177,22 @@ function TitleScreen()
     gfx.print("START GAME",fontTextSM,220,300)
     gfx.setColor(0.5,0.5,0.5)
     gfx.print("OPTIONS",fontTextSM,270,360)
+    gfx.setColor(0.5,0.5,0.5)
+    gfx.print("CREDITS",fontTextSM,270,420)
   elseif ttlOption == 1 then 
     gfx.setColor(1,1,1)
     gfx.print("OPTIONS",fontTextSM,270,360)
     gfx.setColor(0.5,0.5,0.5)
     gfx.print("START GAME",fontTextSM,220,300)
+    gfx.setColor(0.5,0.5,0.5)
+    gfx.print("CREDITS",fontTextSM,270,420)
+  elseif ttlOption == 2 then
+    gfx.setColor(1,1,1)
+    gfx.print("CREDITS",fontTextSM,270,420)
+    gfx.setColor(0.5,0.5,0.5)
+    gfx.print("START GAME",fontTextSM,220,300)
+    gfx.setColor(0.5,0.5,0.5)
+    gfx.print("OPTIONS",fontTextSM,270,360)
   end
   
   
@@ -162,6 +206,11 @@ function MainGameLoop()
   bg_draw()
   Talkies.draw()
 end
+
+function Credits()
+  mus_credits:play()  
+end
+
 
 function BlackToWhite()
   gfx.setBackgroundColor(bgclr.r/100,bgclr.g/100,bgclr.b/100)
