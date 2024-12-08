@@ -6,6 +6,9 @@ flux = require 'libraries/flux'
 GAMEMODE = 0
 INTERVIEW = 1
 
+
+playNOISE = true
+fadeIn_SS = 1
 bgclr = {r=0,g=0,b=0}
 ttlOption = 0
 
@@ -22,6 +25,7 @@ ttlOption = 0
 --1: TITLESCREEN
 --2: OPTIONS(?)
 --3: GAMEPLAY
+--4: CREDITS
 
 --INTERVIEW
 --0: INTRO 
@@ -60,12 +64,19 @@ function love.update(dt)
   flux.update(dt)
   if GAMEMODE == 0 then
     ssLen = 3
-    fadeIn_SS = {f=255}
-    flux.to(fadeIn_SS, 1, {f=0})--:ease("circinout")
+
+    --fadeIn_SS = fadeInSS+dt
+    --if fadeIn_SS = math.floor(0)
     ssTimer = ssTimer+dt
     if ssTimer >= ssLen then
       GAMEMODE = 1
     end
+    snd.setEffect("NOISEVerb", {type="reverb"})
+    if playNOISE == true then
+      sfx_NOISE:setEffect("NOISEVerb")
+      sfx_NOISE:play()
+      playNOISE = false
+    end  
   elseif GAMEMODE == 1 then
     
   elseif GAMEMODE == 2 then 
@@ -112,11 +123,11 @@ end
 
 function SplashScreen()
   splashScreenArt = gfx.newImage("sprites/splashscreen.png")
-  gfx.setColor(0,0,0,fadeIn_SS.f)
+  --gfx.setColor(0,0,0,fadeIn_SS.f/100)
+  
   gfx.draw(splashScreenArt,0,0)
   gfx.setColor(1,1,1)
-  gfx.print(ssTimer,fontDebug, 0, 0)
-  sfx_NOISE:play()
+  gfx.print(ssTimer,fontDebug,0,0)
   end
 
 function TitleScreen()
