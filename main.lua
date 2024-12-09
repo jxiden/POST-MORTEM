@@ -1,39 +1,20 @@
 Talkies = require('libraries/talkies')
 anim8 = require 'libraries/anim8'
-flux = require 'libraries/flux'
+tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 0
+GAMEMODE = 4
 INTERVIEW = 1
 
 
 playNOISE = true
-fadeIn_SS = 1
-bgclr = {r=0,g=0,b=0}
+fadeOutSS = 0
+fadeInSS = 1
+fadeInBLK = {r=0,g=0,b=0}
+fadeInNAT = {r=100,g=100,b=100}
 ttlOption = 0
 
---TODO:
---SPLIT ALL DATA INCLUDES INTO RESPECTIVE FILES TO BE LOADED AT LOVE.LOAD
-  --SOUNDS: DONE
-  --GRAPHICS: 
---CREATE FADEIN/FADEOUT ROUTINES THAT CAN BE CALLED ON A DIME
---
-
-
---GAMEMODES
---0: SPLASHSCREENS
---1: TITLESCREEN
---2: OPTIONS(?)
---3: GAMEPLAY
---4: CREDITS
-
---INTERVIEW
---0: INTRO 
---1: FRANCIS HATT 
---2: 
---3:
---4: 
---5:
+creditsStartPos = 600
 
 function love.load()
   --setup
@@ -61,22 +42,32 @@ function love.load()
 end
 
 function love.update(dt)
-  flux.update(dt)
   if GAMEMODE == 0 then
-    ssLen = 3
-
-    --fadeIn_SS = fadeInSS+dt
-    --if fadeIn_SS = math.floor(0)
+    ssLen = 4
+    colors_SS=fadeInBLK
+    if fadeInSS == 1 then
+      local fade = tween.new(0.39, colors_SS, fadeInNAT, inOutQuint)
+      fade:update(dt)
+    end
     ssTimer = ssTimer+dt
     if ssTimer >= ssLen then
       GAMEMODE = 1
     end
     snd.setEffect("NOISEVerb", {type="reverb"})
-    if playNOISE == true then
-      sfx_NOISE:setEffect("NOISEVerb")
-      sfx_NOISE:play()
-      playNOISE = false
-    end  
+    if math.floor(ssTimer) == 1 then
+      fadeInSS = 0
+      if playNOISE == true then
+        sfx_NOISE:setEffect("NOISEVerb")
+        sfx_NOISE:play()
+        playNOISE = false
+      end
+    elseif math.floor(ssTimer) == 3 then
+      fadeOutSS = 1
+    end
+    if fadeOutSS == 1 then
+      local fade2 = tween.new(0.5, colors_SS, fadeInBLK, inOutQuint)
+      fade2:update(dt)
+    end
   elseif GAMEMODE == 1 then
     
   elseif GAMEMODE == 2 then 
@@ -84,10 +75,11 @@ function love.update(dt)
     Talkies.update(dt)
     bg_update(dt)
   elseif GAMEMODE == 4 then
-    
+    creditsUpdate(dt)
   end
 
 end
+
 
 function love.draw()
   if GAMEMODE == 0 then
@@ -116,7 +108,8 @@ function love.keypressed(key)
       elseif key == "return" then
         mus_title:stop()
         GAMEMODE = 3
-    if ttlOption == 1 then
+      end
+    elseif ttlOption == 1 then
       if key == "down" then
         ttlOption = 2
         snd.stop(sfx_ttlSelect)
@@ -129,7 +122,7 @@ function love.keypressed(key)
         mus_title:stop()
         GAMEMODE = 2
       end
-    if ttlOption == 2 then
+    elseif ttlOption == 2 then
       if key == "up" then
         ttlOption = 1 
         snd.stop(sfx_ttlSelect)
@@ -138,11 +131,10 @@ function love.keypressed(key)
         mus_title:stop()
         GAMEMODE = 4
       end
-  end
-  if GAMEMODE == 2 then 
+    end  
+  elseif GAMEMODE == 2 then 
     
-  end
-  if GAMEMODE == 3 then
+  elseif GAMEMODE == 3 then
     if key == "return" or key=="space" then 
       Talkies.onAction()
     elseif key == "up" then 
@@ -156,11 +148,11 @@ end
 
 function SplashScreen()
   splashScreenArt = gfx.newImage("sprites/splashscreen.png")
-  --gfx.setColor(0,0,0,fadeIn_SS.f/100)
-  
+  gfx.setColor(colors_SS.r/100,colors_SS.g/100,colors_SS.b/100)
   gfx.draw(splashScreenArt,0,0)
   gfx.setColor(1,1,1)
-  gfx.print(ssTimer,fontDebug,0,0)
+  gfx.print(colors_SS.r,fontDebug,0,0)
+  gfx.print(math.floor(fadeOutSS),fontDebug,0,20)
   end
 
 function TitleScreen()
@@ -208,7 +200,44 @@ function MainGameLoop()
 end
 
 function Credits()
-  mus_credits:play()  
+  mus_credits:play()
+  credSpacing=40
+  credX = 20
+  gfx.setColor(1,1,1)
+  tempBG = gfx.newImage("sprites/tempBG.jpg")
+  gfx.draw(tempBG)
+  gfx.setColor(0,0,0)
+  gfx.rectangle("fill",0,0,180,600)
+  gfx.setColor(1,1,1)
+  gfx.print(creditsStartPos,fontDebug)
+  gfx.print("post-mortem credits",fontCredits,credX,creditsStartPos)
+  gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*1)
+  gfx.print("lead design:",fontCredits,credX,creditsStartPos+credSpacing*2)
+  gfx.print("desi",fontCredits,credX,creditsStartPos+credSpacing*3)
+  gfx.print("art direction:",fontCredits,credX,creditsStartPos+credSpacing*4)
+  gfx.print("jaiden",fontCredits,credX,creditsStartPos+credSpacing*5)
+  gfx.print("art assets:",fontCredits,credX,creditsStartPos+credSpacing*6)
+  gfx.print("jaiden",fontCredits,credX,creditsStartPos+credSpacing*7)
+  gfx.print("music & sfx:",fontCredits,credX,creditsStartPos+credSpacing*8)
+  gfx.print("desi",fontCredits,credX,creditsStartPos+credSpacing*9)
+  gfx.print("programming:",fontCredits,credX,creditsStartPos+credSpacing*10)
+  gfx.print("desi & jaiden",fontCredits,credX,creditsStartPos+credSpacing*11)
+  gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*12)
+  gfx.print("libraries used:",fontCredits,credX,creditsStartPos+credSpacing*13)
+  gfx.print("anim8",fontCredits,credX,creditsStartPos+credSpacing*14)
+  gfx.print("talkies.lua",fontCredits,credX,creditsStartPos+credSpacing*15)
+  gfx.print("tween.lua",fontCredits,credX,creditsStartPos+credSpacing*16)
+  gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*17)
+  gfx.print("special thanks",fontCredits,credX,creditsStartPos+credSpacing*18)
+  gfx.print("niko baletin",fontCredits,credX,creditsStartPos+credSpacing*19)
+  gfx.print("lee tusman",fontCredits,credX,creditsStartPos+credSpacing*20)
+  gfx.print("windows97",fontCredits,credX,creditsStartPos+credSpacing*21)
+  gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*22)
+  gfx.print("thank you for playing!",fontCredits,credX,creditsStartPos+credSpacing*23)
+end
+function creditsUpdate(dt)
+  creditsStartPos=creditsStartPos-(dt*12)
+  --if creditsStartPos >= 
 end
 
 
