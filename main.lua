@@ -3,9 +3,10 @@ anim8 = require 'libraries/anim8'
 tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 4
+GAMEMODE = 3
 INTERVIEW = 1
 
+isFullScreen = false
 
 playNOISE = true
 fadeOutSS = 0
@@ -82,6 +83,18 @@ end
 
 
 function love.draw()
+  local width, height = love.window.getDesktopDimensions()
+  local nativeX = 800
+  local nativeY = 600
+  
+  if love.window.setFullscreen == true then
+    local strecthedX = (width-nativeX*2)/2 
+    local strecthedY = (height-nativeY*2)/2 
+    gfx.translate(strecthedX, strecthedY) 
+    love.graphics.scale(4, 4)
+  end
+  
+  
   if GAMEMODE == 0 then
     SplashScreen()
   elseif GAMEMODE == 1 then
@@ -96,9 +109,10 @@ function love.draw()
 end
 
 function love.keypressed(key)
-  --if key == "f" then 
-  --  love.window.setFullscreen(true)
-  --end
+  if key == "f" then
+    fullscreen = not fullscreen
+    love.window.setFullscreen(fullscreen, "exclusive")
+  end
   if GAMEMODE == 1 then
     if ttlOption == 0 then
       if key == "down" then
