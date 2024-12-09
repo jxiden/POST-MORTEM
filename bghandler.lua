@@ -22,10 +22,10 @@ end
 
 function bg_update(dt)
   --bg1.animation:update(dt)
-  bg3.animation:update(dt)
+  bg2.animation:update(dt)
 end
 
 function bg_draw()
   --bg1.animation:draw(bg1.spriteSheet,0,0)
-  bg3.animation:draw(bg3.spriteSheet,0,0)
+  bg2.animation:draw(bg2.spriteSheet,0,0)
 end
