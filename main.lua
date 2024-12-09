@@ -27,6 +27,7 @@ function love.load()
   --graphics
   gfx = love.graphics
   require "gfx"
+  require "shaders"
   loadGraphics()
   loadFonts()
   Creature = require "creatures"
@@ -87,12 +88,7 @@ function love.draw()
   local nativeX = 800
   local nativeY = 600
   
-  if love.window.setFullscreen == true then
-    local strecthedX = (width-nativeX*2)/2 
-    local strecthedY = (height-nativeY*2)/2 
-    gfx.translate(strecthedX, strecthedY) 
-    love.graphics.scale(4, 4)
-  end
+  --love.graphics.setShader(shader) --draw something here
   
   
   if GAMEMODE == 0 then
@@ -106,6 +102,7 @@ function love.draw()
   elseif GAMEMODE == 4 then
     Credits()
   end
+  --love.graphics.setShader()
 end
 
 function love.keypressed(key)
