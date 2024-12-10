@@ -3,7 +3,7 @@ anim8 = require 'libraries/anim8'
 tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 4
+GAMEMODE = 0
 INTERVIEW = 1
 
 isFullScreen = false
@@ -30,9 +30,9 @@ function love.load()
   require "shaders"
   loadGraphics()
   loadFonts()
-  Creature = require "creatures"
+  ghost1 = require "ghost1"
   
-  Creature.sayHello()
+  ghost1.sayHello()
   
   require "bghandler"
   loadBackgrounds()

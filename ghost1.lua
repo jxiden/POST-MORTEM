@@ -1,12 +1,14 @@
 local Talkies = require('libraries/talkies')
 
-local Creature = {}
+local ghost1 = {}
 local avatar;
 local blop
+local life = false
+local die = false
+local proud = false
 
-
-function Creature.sayHello()
-  f_sprite = gfx.newImage("sprites/g1-1.png")
+function ghost1.sayHello()
+  f_sprite = gfx.newImage("sprites/g1-0.png")
 
   Talkies.say("...", "Hello there youngster.",
     {
@@ -16,12 +18,12 @@ function Creature.sayHello()
       textSpeed="slow",
 
       options={
-        {"What's your name?", function() Creature.name() end}
+        {"What's your name?", function() ghost1.name() end}
       }
     })
 end
 
-function Creature.name()
+function ghost1.name()
     Talkies.say("Francis", "My name is Francis Hatt",
     {
       image=f_sprite,
@@ -30,13 +32,15 @@ function Creature.name()
       textSpeed="slow",
       
       options={
-        {"How did you die?", function() Creature.die() end},
-        {"What was your life like?", function() Creature.life() end},
+        {
+          "How did you die?", function() ghost1.die() end
+        },
+        {"What was your life like?", function() ghost1.life() end},
       }
     })
 end
 
-function Creature.life()
+function ghost1.life()
     Talkies.say("Francis", "I had a pleasant life. My wife Mabel and I owned a small farm in Louisa County. We sold eggs to locals and took care of a few cows, cats, and chickens. My wife was usually the one taking care of her garden, but I helped her out too.",
     {
       image=f_sprite,
@@ -45,14 +49,14 @@ function Creature.life()
       textSpeed="slow",
       
       options={
-        {"How did you die?", function() Creature.die() end},
-        {"What was your life like?", function() Creature.life() end},
+        {"How did you die?", function() ghost1.die() end},
+        {"What was your life like?", function() ghost1.life() end},
       }
     })
 end
 
-function Creature.die()
-    Talkies.say("Francis", "I died of cancer.",
+function ghost1.die()
+    Talkies.say("Francis", "Last I remember I tripped while walking down the stairs in the morning.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -60,11 +64,11 @@ function Creature.die()
       textSpeed="slow",
       
       options={
-        {"How did you die?", function() Creature.die() end},
-        {"What was your life like?", function() Creature.life() end},
+        {"How did you die?", function() ghost1.die() end},
+        {"What was your life like?", function() ghost1.life() end},
       }
     })
 end
 
 
-return Creature
+return ghost1
