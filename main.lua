@@ -15,11 +15,13 @@ fadeInBLK = {r=0,g=0,b=0}
 fadeInNAT = {r=100,g=100,b=100}
 ttlOption = 0
 
-creditsStartPos = 600
+  credSpacing=40
+  credX = 20
+  creditsStartPos = 600
 
 function love.load()
   --setup
-  love.window.setTitle("MEAT")
+  love.window.setTitle("POST-MORTEM "..os.date().." DO NOT DISTRIBUTE")
   love.window.setMode(800,600)
   
   ssTimer = 0
@@ -72,15 +74,15 @@ function love.update(dt)
       fade2:update(dt)
     end
   elseif GAMEMODE == 1 then
-    if mausx >= 210 and mausx <= 590 then 
-      if mausy >= 300 and mausy <360 then
-        ttlOption = 0
-      elseif mausy >= 360 and mausy <420 then
-        ttlOption = 1
-      elseif mausy >= 420 and mausy <480 then
-        ttlOption = 2
-      end
-    end 
+    --if mausx >= 210 and mausx <= 590 then 
+      --if mausy >= 300 and mausy <360 then
+       -- ttlOption = 0
+      --elseif mausy >= 360 and mausy <420 then
+       -- ttlOption = 1
+      --elseif mausy >= 420 and mausy <480 then
+       -- ttlOption = 2
+      --end
+    --end 
   elseif GAMEMODE == 2 then 
   elseif GAMEMODE == 3 then
     Talkies.update(dt)
@@ -120,21 +122,21 @@ function love.keypressed(key)
         GAMEMODE = 3
       end
     elseif ttlOption == 1 then
-      if key == "down" then
-        ttlOption = 2
-        snd.stop(sfx_ttlSelect)
-        sfx_ttlSelect:play()  
-      elseif key == "up" then
-        ttlOption = 0 
-        snd.stop(sfx_ttlSelect)
-        sfx_ttlSelect:play()
-      elseif key == "return" then
-        mus_title:stop()
-        GAMEMODE = 2
-      end
-    elseif ttlOption == 2 then
+      --if key == "down" then
+        --ttlOption = 2
+        --snd.stop(sfx_ttlSelect)
+        --sfx_ttlSelect:play()  
+      --elseif key == "up" then
+        --ttlOption = 0 
+        --snd.stop(sfx_ttlSelect)
+        --sfx_ttlSelect:play()
+      --elseif key == "return" then
+        --mus_title:stop()
+        --GAMEMODE = 2
+      --end
+    --elseif ttlOption == 2 then
       if key == "up" then
-        ttlOption = 1 
+        ttlOption = 0 
         snd.stop(sfx_ttlSelect)
         sfx_ttlSelect:play()  
       elseif key == "return" then
@@ -184,20 +186,20 @@ function TitleScreen()
     gfx.setColor(1,1,1)
     gfx.print("START GAME",fontTextSM,option1x,300)
     gfx.setColor(0.5,0.5,0.5)
-    gfx.print("OPTIONS",option23x,360)
-    gfx.print("CREDITS",option23x,420)
+    gfx.print("CREDITS",fontTextSM,option23x,360)
+    --gfx.print("CREDITS",fontTextSM,option23x,420)
   elseif ttlOption == 1 then 
     gfx.setColor(1,1,1)
-    gfx.print("OPTIONS",fontTextSM,option23x,360)
+    gfx.print("CREDITS",fontTextSM,option23x,360)
     gfx.setColor(0.5,0.5,0.5)
-    gfx.print("START GAME",option1x,300)
-    gfx.print("CREDITS",option23x,420)
-  elseif ttlOption == 2 then
-    gfx.setColor(1,1,1)
-    gfx.print("CREDITS",fontTextSM,option23x,420)
-    gfx.setColor(0.5,0.5,0.5)
-    gfx.print("START GAME",option1x,300)
-    gfx.print("OPTIONS",option23x,360)
+    gfx.print("START GAME",fontTextSM,option1x,300)
+    --gfx.print("CREDITS",fontTextSM,option23x,420)
+  --elseif ttlOption == 2 then
+    --gfx.setColor(1,1,1)
+    --gfx.print("CREDITS",fontTextSM,option23x,420)
+    --gfx.setColor(0.5,0.5,0.5)
+    --gfx.print("START GAME",fontTextSM,option1x,300)
+    --gfx.print("CREDITS",fontTextSM,option23x,360)
   end
   
   
@@ -217,45 +219,53 @@ function MainGameLoop()
   Talkies.draw()
 end
 
+
 function Credits()
   mus_credits:play()
-  credSpacing=40
-  credX = 20
   gfx.setColor(1,1,1)
   tempBG = gfx.newImage("sprites/tempBG.jpg")
   gfx.draw(tempBG)
   gfx.setColor(0,0,0)
   gfx.rectangle("fill",0,0,180,600)
   gfx.setColor(1,1,1)
-  gfx.print(creditsStartPos,fontDebug)
-  gfx.print("post-mortem credits",fontCredits,credX,creditsStartPos)
-  gfx.print("",credX,creditsStartPos+credSpacing*1)
-  gfx.print("lead design:",credX,creditsStartPos+credSpacing*2)
-  gfx.print("desi",credX,creditsStartPos+credSpacing*3)
-  gfx.print("art direction:",credX,creditsStartPos+credSpacing*4)
-  gfx.print("jaiden",credX,creditsStartPos+credSpacing*5)
-  gfx.print("art assets:",credX,creditsStartPos+credSpacing*6)
-  gfx.print("jaiden",credX,creditsStartPos+credSpacing*7)
-  gfx.print("music & sfx:",credX,creditsStartPos+credSpacing*8)
-  gfx.print("desi",credX,creditsStartPos+credSpacing*9)
-  gfx.print("programming:",credX,creditsStartPos+credSpacing*10)
-  gfx.print("desi & jaiden",credX,creditsStartPos+credSpacing*11)
-  gfx.print("",credX,creditsStartPos+credSpacing*12)
-  gfx.print("libraries used:",credX,creditsStartPos+credSpacing*13)
-  gfx.print("anim8",credX,creditsStartPos+credSpacing*14)
-  gfx.print("talkies.lua",credX,creditsStartPos+credSpacing*15)
-  gfx.print("tween.lua",credX,creditsStartPos+credSpacing*16)
-  gfx.print("",credX,creditsStartPos+credSpacing*17)
-  gfx.print("special thanks",credX,creditsStartPos+credSpacing*18)
-  gfx.print("niko baletin",credX,creditsStartPos+credSpacing*19)
-  gfx.print("lee tusman",credX,creditsStartPos+credSpacing*20)
-  gfx.print("windows97",credX,creditsStartPos+credSpacing*21)
-  gfx.print("",credX,creditsStartPos+credSpacing*22)
-  gfx.print("thank you for playing!",credX,creditsStartPos+credSpacing*23)
+  gfx.print("POST-MORTEM",fontTitle,credX,creditsStartPos)
+  gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*1)
+  gfx.print("lead design:",fontCredits,credX,creditsStartPos+credSpacing*2)
+  gfx.print("desi",fontCredits,credX,creditsStartPos+credSpacing*3)
+  gfx.print("art direction:",fontCredits,credX,creditsStartPos+credSpacing*4)
+  gfx.print("jaiden",fontCredits,credX,creditsStartPos+credSpacing*5)
+  gfx.print("art assets:",fontCredits,credX,creditsStartPos+credSpacing*6)
+  gfx.print("jaiden",fontCredits,credX,creditsStartPos+credSpacing*7)
+  gfx.print("music & sfx:",fontCredits,credX,creditsStartPos+credSpacing*8)
+  gfx.print("desi",fontCredits,credX,creditsStartPos+credSpacing*9)
+  gfx.print("programming:",fontCredits,credX,creditsStartPos+credSpacing*10)
+  gfx.print("desi & jaiden",fontCredits,credX,creditsStartPos+credSpacing*11)
+  gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*12)
+  gfx.print("libraries used:",fontCredits,credX,creditsStartPos+credSpacing*13)
+  gfx.print("anim8",fontCredits,credX,creditsStartPos+credSpacing*14)
+  gfx.print("talkies.lua",fontCredits,credX,creditsStartPos+credSpacing*15)
+  gfx.print("tween.lua",fontCredits,credX,creditsStartPos+credSpacing*16)
+  gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*17)
+  gfx.print("special thanks",fontCredits,credX,creditsStartPos+credSpacing*18)
+  gfx.print("niko baletin",fontCredits,credX,creditsStartPos+credSpacing*19)
+  gfx.print("lee tusman",fontCredits,credX,creditsStartPos+credSpacing*20)
+  gfx.print("windows97",fontCredits,credX,creditsStartPos+credSpacing*21)
+  gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*22)
+  gfx.print("thank you for playing!",fontCredits,credX,creditsStartPos+credSpacing*23)
+  noiseSyndicate = gfx.newImage("sprites/noise.png")
+  gfx.draw(noiseSyndicate,credX,ns_y)
+  gfx.print(creditsStartPos,fontDebug,0,0)
 end
 function creditsUpdate(dt)
-  creditsStartPos=creditsStartPos-(dt*12)
-  --if creditsStartPos >= 
+  creditsStartPos=creditsStartPos-(dt*40)
+  ns_y = creditsStartPos+credSpacing*24
+  if math.floor(ns_y) <= 44 then
+    ns_y = 44
+    end
+  if creditsStartPos >= 1100 then
+      mus_credits:stop()
+      GAMEMODE=0
+  end
 end
 
 
