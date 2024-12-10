@@ -4,6 +4,7 @@ local Creature = {}
 local avatar;
 local blop
 
+Talkies.font = fontTextInGame
 
 function Creature.sayHello()
   f_sprite = gfx.newImage("sprites/g1-1.png")

@@ -3,7 +3,7 @@ anim8 = require 'libraries/anim8'
 tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 4
+GAMEMODE = 1
 INTERVIEW = 1
 
 isFullScreen = false
@@ -44,6 +44,7 @@ function love.load()
 end
 
 function love.update(dt)
+  mausx, mausy = love.mouse.getPosition()  
   if GAMEMODE == 0 then
     ssLen = 4
     colors_SS=fadeInBLK
@@ -71,7 +72,15 @@ function love.update(dt)
       fade2:update(dt)
     end
   elseif GAMEMODE == 1 then
-    
+    if mausx >= 210 and mausx <= 590 then 
+      if mausy >= 300 and mausy <360 then
+        ttlOption = 0
+      elseif mausy >= 360 and mausy <420 then
+        ttlOption = 1
+      elseif mausy >= 420 and mausy <480 then
+        ttlOption = 2
+      end
+    end 
   elseif GAMEMODE == 2 then 
   elseif GAMEMODE == 3 then
     Talkies.update(dt)
@@ -84,11 +93,6 @@ end
 
 
 function love.draw()
-  local width, height = love.window.getDesktopDimensions()
-  local nativeX = 800
-  local nativeY = 600
-  
-  --love.graphics.setShader(shader) --draw something here
   
   
   if GAMEMODE == 0 then
@@ -102,14 +106,9 @@ function love.draw()
   elseif GAMEMODE == 4 then
     Credits()
   end
-  --love.graphics.setShader()
 end
 
 function love.keypressed(key)
-  if key == "f" then
-    fullscreen = not fullscreen
-    love.window.setFullscreen(fullscreen, "exclusive")
-  end
   if GAMEMODE == 1 then
     if ttlOption == 0 then
       if key == "down" then
@@ -144,7 +143,10 @@ function love.keypressed(key)
       end
     end  
   elseif GAMEMODE == 2 then 
-    
+    if key == "return" and optionSelect == 0 then
+      fullscreen = not fullscreen
+      love.window.setFullscreen(fullscreen, "exclusive")
+    end
   elseif GAMEMODE == 3 then
     if key == "return" or key=="space" then 
       Talkies.onAction()
@@ -171,40 +173,45 @@ function TitleScreen()
   img2 = gfx.newImage("sprites/img2.png")
   gfx.setColor(0.3,0.3,0.4)
   gfx.draw(img2) 
-  x, y = love.mouse.getPosition( )  
   gfx.setColor(1,1,1)
   gfx.print("POST-MORTEM",fontTitle,20,100)
+  gfx.print(mausx,fontDebug,mausx,mausy+100)
+  
+  option1x=210 --option 1 on menu
+  option23x=260 --options 2 and 3 on menu
   
   if ttlOption == 0 then
     gfx.setColor(1,1,1)
-    gfx.print("START GAME",fontTextSM,220,300)
+    gfx.print("START GAME",fontTextSM,option1x,300)
     gfx.setColor(0.5,0.5,0.5)
-    gfx.print("OPTIONS",fontTextSM,270,360)
-    gfx.setColor(0.5,0.5,0.5)
-    gfx.print("CREDITS",fontTextSM,270,420)
+    gfx.print("OPTIONS",option23x,360)
+    gfx.print("CREDITS",option23x,420)
   elseif ttlOption == 1 then 
     gfx.setColor(1,1,1)
-    gfx.print("OPTIONS",fontTextSM,270,360)
+    gfx.print("OPTIONS",fontTextSM,option23x,360)
     gfx.setColor(0.5,0.5,0.5)
-    gfx.print("START GAME",fontTextSM,220,300)
-    gfx.setColor(0.5,0.5,0.5)
-    gfx.print("CREDITS",fontTextSM,270,420)
+    gfx.print("START GAME",option1x,300)
+    gfx.print("CREDITS",option23x,420)
   elseif ttlOption == 2 then
     gfx.setColor(1,1,1)
-    gfx.print("CREDITS",fontTextSM,270,420)
+    gfx.print("CREDITS",fontTextSM,option23x,420)
     gfx.setColor(0.5,0.5,0.5)
-    gfx.print("START GAME",fontTextSM,220,300)
-    gfx.setColor(0.5,0.5,0.5)
-    gfx.print("OPTIONS",fontTextSM,270,360)
+    gfx.print("START GAME",option1x,300)
+    gfx.print("OPTIONS",option23x,360)
   end
   
   
 end
-
+optionSelect = 0  
 function Options()
+  if key == "f" then
+    fullscreen = not fullscreen
+    love.window.setFullscreen(fullscreen, "exclusive")
+  end
+end
+function OptionsUpdate()
   
 end
-
 function MainGameLoop()
   bg_draw()
   Talkies.draw()
@@ -221,30 +228,30 @@ function Credits()
   gfx.rectangle("fill",0,0,180,600)
   gfx.setColor(1,1,1)
   gfx.print(creditsStartPos,fontDebug)
-  gfx.print("post-mortem credits",fontTextSM,credX,creditsStartPos)
-  gfx.print("",fontTextSM,credX,creditsStartPos+credSpacing*1)
-  gfx.print("lead design:",fontTextSM,credX,creditsStartPos+credSpacing*2)
-  gfx.print("desi",fontTextSM,credX,creditsStartPos+credSpacing*3)
-  gfx.print("art direction:",fontTextSM,credX,creditsStartPos+credSpacing*4)
-  gfx.print("jaiden",fontTextSM,credX,creditsStartPos+credSpacing*5)
-  gfx.print("art assets:",fontTextSM,credX,creditsStartPos+credSpacing*6)
-  gfx.print("jaiden",fontTextSM,credX,creditsStartPos+credSpacing*7)
-  gfx.print("music & sfx:",fontTextSM,credX,creditsStartPos+credSpacing*8)
-  gfx.print("desi",fontTextSM,credX,creditsStartPos+credSpacing*9)
-  gfx.print("programming:",fontTextSM,credX,creditsStartPos+credSpacing*10)
-  gfx.print("desi & jaiden",fontTextSM,credX,creditsStartPos+credSpacing*11)
-  gfx.print("",fontTextSM,credX,creditsStartPos+credSpacing*12)
-  gfx.print("libraries used:",fontTextSM,credX,creditsStartPos+credSpacing*13)
-  gfx.print("anim8",fontTextSM,credX,creditsStartPos+credSpacing*14)
-  gfx.print("talkies.lua",fontTextSM,credX,creditsStartPos+credSpacing*15)
-  gfx.print("tween.lua",fontTextSM,credX,creditsStartPos+credSpacing*16)
-  gfx.print("",fontTextSM,credX,creditsStartPos+credSpacing*17)
-  gfx.print("special thanks",fontTextSM,credX,creditsStartPos+credSpacing*18)
-  gfx.print("niko baletin",fontTextSM,credX,creditsStartPos+credSpacing*19)
-  gfx.print("lee tusman",fontTextSM,credX,creditsStartPos+credSpacing*20)
-  gfx.print("windows97",fontTextSM,credX,creditsStartPos+credSpacing*21)
-  gfx.print("",fontTextSM,credX,creditsStartPos+credSpacing*22)
-  gfx.print("thank you for playing!",fontTextSM,credX,creditsStartPos+credSpacing*23)
+  gfx.print("post-mortem credits",fontCredits,credX,creditsStartPos)
+  gfx.print("",credX,creditsStartPos+credSpacing*1)
+  gfx.print("lead design:",credX,creditsStartPos+credSpacing*2)
+  gfx.print("desi",credX,creditsStartPos+credSpacing*3)
+  gfx.print("art direction:",credX,creditsStartPos+credSpacing*4)
+  gfx.print("jaiden",credX,creditsStartPos+credSpacing*5)
+  gfx.print("art assets:",credX,creditsStartPos+credSpacing*6)
+  gfx.print("jaiden",credX,creditsStartPos+credSpacing*7)
+  gfx.print("music & sfx:",credX,creditsStartPos+credSpacing*8)
+  gfx.print("desi",credX,creditsStartPos+credSpacing*9)
+  gfx.print("programming:",credX,creditsStartPos+credSpacing*10)
+  gfx.print("desi & jaiden",credX,creditsStartPos+credSpacing*11)
+  gfx.print("",credX,creditsStartPos+credSpacing*12)
+  gfx.print("libraries used:",credX,creditsStartPos+credSpacing*13)
+  gfx.print("anim8",credX,creditsStartPos+credSpacing*14)
+  gfx.print("talkies.lua",credX,creditsStartPos+credSpacing*15)
+  gfx.print("tween.lua",credX,creditsStartPos+credSpacing*16)
+  gfx.print("",credX,creditsStartPos+credSpacing*17)
+  gfx.print("special thanks",credX,creditsStartPos+credSpacing*18)
+  gfx.print("niko baletin",credX,creditsStartPos+credSpacing*19)
+  gfx.print("lee tusman",credX,creditsStartPos+credSpacing*20)
+  gfx.print("windows97",credX,creditsStartPos+credSpacing*21)
+  gfx.print("",credX,creditsStartPos+credSpacing*22)
+  gfx.print("thank you for playing!",credX,creditsStartPos+credSpacing*23)
 end
 function creditsUpdate(dt)
   creditsStartPos=creditsStartPos-(dt*12)
