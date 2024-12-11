@@ -150,6 +150,7 @@ function ghost3.limbo()
 end
 
 function ghost3.next()
+  mus_leah:stop()
   GAMEMODE = 0
   INTERVIEW = 0
   bgID = 0

@@ -3,8 +3,9 @@ anim8 = require 'libraries/anim8'
 tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 0
+GAMEMODE = 3
 INTERVIEW = 0
+ghostID = 0
 bgID = 0
 
 ghosts_morality = {0,9,3,5,2,1}
@@ -17,6 +18,7 @@ fadeInSS = 1
 fadeInBLK = {r=0,g=0,b=0}
 fadeInNAT = {r=100,g=100,b=100}
 ttlOption = 0
+
 
   credSpacing=40
   credX = 20
@@ -84,6 +86,7 @@ function love.update(dt)
   elseif GAMEMODE == 1 then
   elseif GAMEMODE == 2 then 
   elseif GAMEMODE == 3 then
+
     Talkies.update(dt)
     MainGameUpdate()
     bg_update(dt)
@@ -240,6 +243,23 @@ function OptionsUpdate()
 end
 function MainGameLoop()
   bg_draw()
+  ghost1img1 = gfx.newImage("sprites/ghosts/g1-1.png")
+  ghost1img2 = gfx.newImage("sprites/ghosts/g1-2.png")
+  ghost1img3 = gfx.newImage("sprites/ghosts/g1-3.png")
+  ghost2img1 = gfx.newImage("sprites/ghosts/g2-1.png")
+  ghost1img2 = gfx.newImage("sprites/ghosts/g2-2.png")
+  ghost3img1 = gfx.newImage("sprites/ghosts/g3-1.png")
+  ghost3img2 = gfx.newImage("sprites/ghosts/g3-2.png")
+  ghost3img3 = gfx.newImage("sprites/ghosts/g3-3.png")
+  if INTERVIEW == 1 then
+    gfx.draw(ghost1img1, 200,30,0,3,3)
+    
+  elseif INTERVIEW == 2 then
+    gfx.draw(ghost2img1, 200,30,0,3,3)
+  elseif INTERVIEW == 3 then 
+    gfx.draw(ghost3img1, 200,30,0,3,3)
+  end
+  
   Talkies.draw()
 end
 
