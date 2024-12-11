@@ -46,7 +46,7 @@ function ghost2.life()
       textSpeed="slow",
       
       options={
-        {"What  accomplishments  are  you  proud  of?", function() ghost2.proud() end},
+        {"What  achievements  are  you  proud  of?", function() ghost2.proud() end},
       }
     })
 end

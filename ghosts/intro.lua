@@ -29,6 +29,7 @@ end
 
 function ghostIntro.next()
   INTERVIEW = INTERVIEW+1
+  bgID = bgID+1
   ghost1.sayHello()
 end
 

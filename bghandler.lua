@@ -38,21 +38,26 @@ function loadBackgrounds()
 end
 
 function bg_update(dt)
-  if INTERVIEW == 0 then 
-    bg0.animation:update(dt)
-  elseif INTERVIEW == 1 then bg1.animation:update(dt) 
-  elseif INTERVIEW == 2 then bg2.animation:update(dt) 
-  elseif INTERVIEW == 3 then bg3.animation:update(dt) end
+  if bgID == 0 then bg0.animation:update(dt)
+  elseif bgID == 1 then bg1.animation:update(dt) 
+  elseif bgID == 2 then bg2.animation:update(dt) 
+  elseif bgID == 3 then bg3.animation:update(dt) 
+  elseif bgID == 4 then bg4.animation:update(dt) 
+  elseif bgID == 5 then bg6.animation:update(dt) end
 end
 
 function bg_draw()
-  if INTERVIEW == 0 then 
+  if bgID == 0 then 
     bg0.animation:draw(bg0.spriteSheet,0,0)
-  elseif INTERVIEW == 1 then 
+  elseif bgID == 1 then 
     bg1.animation:draw(bg1.spriteSheet,0,0)
-  elseif INTERVIEW == 2 then 
+  elseif bgID == 2 then 
     bg2.animation:draw(bg2.spriteSheet,0,0) 
-  elseif INTERVIEW == 3 then 
+  elseif bgID == 3 then 
     bg3.animation:draw(bg3.spriteSheet,0,0) 
-    end
+  elseif bgID == 4 then 
+    bg6.animation:draw(bg4.spriteSheet,0,0) 
+  elseif bgID == 5 then 
+    bg6.animation:draw(bg6.spriteSheet,0,0) 
+  end
 end
