@@ -88,6 +88,18 @@ function love.update(dt)
     Talkies.update(dt)
     MainGameUpdate()
     bg_update(dt)
+    if INTERVIEW == 0 then
+      mus_intro:play()
+    elseif INTERVIEW == 1 then
+      mus_intro:stop()
+      mus_francis:play()
+    elseif INTERVIEW == 2 then
+      mus_francis:stop()
+      mus_richard:play()
+    elseif INTERVIEW == 3 then
+      mus_richard:stop()
+      mus_leah:play()
+    end
   elseif GAMEMODE == 4 then
     if creditsStartPos<-1100 then
       credX = 20

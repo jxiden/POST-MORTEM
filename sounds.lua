@@ -9,6 +9,10 @@
 function loadSounds()
 mus_title = snd.newSource("music/MUS_TITLE.mp3", "stream")
 mus_credits = snd.newSource("music/MUS_CREDITS.mp3","stream")
+mus_intro = snd.newSource("music/MUS_INTRO.mp3", "stream")
+mus_francis = snd.newSource("music/MUS_FRANCIS_TEMP.mp3", "stream")
+mus_richard = snd.newSource("music/MUS_RICHARD_TEMP.mp3", "stream")
+mus_leah = snd.newSource("music/MUS_LEAH.mp3", "stream")
 
 sfx_talk_f =  snd.newSource("sfx/SFX_Talk_F.wav", "static")
 sfx_talk_e =  snd.newSource("sfx/SFX_Talk_E.wav", "static")
