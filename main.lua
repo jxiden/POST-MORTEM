@@ -3,7 +3,7 @@ anim8 = require 'libraries/anim8'
 tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 4
+GAMEMODE = 0
 INTERVIEW = 0
 
 ghosts_morality = {0,9,3,5,2,1}
@@ -172,8 +172,10 @@ function love.keypressed(key)
       Talkies.nextOption()
     end
   elseif GAMEMODE == 4 then
-    if key == "space" then
-      creditSpeed = 40
+    if key == "space" or key == "return" then
+      if creditSpeed==12 then
+        creditSpeed = 40
+      else creditSpeed=12 end
     else 
       creditsSpeed = 12
     end

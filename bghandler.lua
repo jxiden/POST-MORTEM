@@ -38,9 +38,9 @@ function loadBackgrounds()
 end
 
 function bg_update(dt)
-  bg1.animation:update(dt)
+  bg0.animation:update(dt)
 end
 
 function bg_draw()
-  bg1.animation:draw(bg1.spriteSheet,0,0)
+  bg0.animation:draw(bg0.spriteSheet,0,0)
 end
