@@ -44,6 +44,7 @@ function love.load()
   ghostIntro = require "ghosts/intro"
   ghost1 = require "ghosts/ghost1"
   ghost2 = require "ghosts/ghost2"
+  ghost3 = require "ghosts/ghost3"
     
   ghostIntro.sayHello()
     

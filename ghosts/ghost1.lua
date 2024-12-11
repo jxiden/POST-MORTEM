@@ -78,7 +78,7 @@ function ghost1.love()
 end
 
 function ghost1.regret()
-    Talkies.say("Francis", "Not  having  children.  I  wish  I  had  someone  to  pass  everything  down  to.  I  hope  someone  finds  the  farm  and  takes  care  of  it.",
+    Talkies.say("Francis", "Not  having  children.  I  wish  I  had  someone  to  pass  everything  down  to.  I  hope  someone  finds  the  farm  and  takes  care  of  it someday.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
