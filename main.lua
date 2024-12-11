@@ -3,7 +3,7 @@ anim8 = require 'libraries/anim8'
 tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 0
+GAMEMODE = 1
 INTERVIEW = 0
 
 ghosts_morality = {0,9,3,5,2,1}
@@ -40,11 +40,13 @@ function love.load()
   require "shaders"
   loadGraphics()
   loadFonts()
-  intro = require "ghosts/intro"
+  ghostIntro = require "ghosts/intro"
   ghost1 = require "ghosts/ghost1"
+  ghost2 = require "ghosts/ghost2"
   
-  if INTERVIEW == 0 then intro.sayHello() end
-  if INTERVIEW == 1 then ghost1.sayHello() end
+  if INTERVIEW == 0 then ghost2.sayHello() 
+  elseif INTERVIEW == 1 then ghost1.sayHello()
+  elseif INTERVIEW == 2 then ghost2.sayHello()end
   
   require "bghandler"
   loadBackgrounds()
@@ -103,10 +105,12 @@ function love.draw()
     SplashScreen()
   elseif GAMEMODE == 1 then
     TitleScreen()
+    gfx.print(INTERVIEW, fontDebug,0,0)
   elseif GAMEMODE == 2 then
     Options()
   elseif GAMEMODE == 3 then
     MainGameLoop()
+    gfx.print(INTERVIEW, fontDebug,0,0)
   elseif GAMEMODE == 4 then
     Credits()
   end

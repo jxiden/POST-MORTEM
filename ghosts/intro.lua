@@ -1,11 +1,11 @@
 local Talkies = require('libraries/talkies')
 
-local Satan = {}
+local ghostIntro = {}
 local avatar;
 
 Talkies.font = fontTextInGame
 
-function Satan.sayHello()
+function ghostIntro.sayHello()
   --f_sprite = gfx.newImage("ghosts/g1-1.png")
 
   Talkies.say("?????", {"Pleased to meet you! -- Won't you guess my name?",
@@ -18,9 +18,19 @@ function Satan.sayHello()
       talkSound=sfx_talk_u,
       typedNotTalked=true,
       textSpeed="slow",
-    })
-  INTERVIEW=INTERVIEW+1
-  print(INTERVIEW)
+      
+      options={
+        {"I understand", function() ghostIntro.next() end},
+      }
+
+  })
+    
 end
 
-return Satan
+function ghostIntro.next()
+  INTERVIEW = INTERVIEW+1
+  ghost1.sayHello()
+end
+
+return ghostIntro
+
