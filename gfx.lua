@@ -8,5 +8,5 @@ function loadFonts()
   fontCreditsSmall = gfx.setNewFont("fonts/text-font.ttf", 30)
   fontTextSM = gfx.setNewFont("fonts/text-font.ttf",40)
   fontCredits = fontTextSM
-  fontTextInGame = gfx.setNewFont("fonts/text-font.ttf",18)
+  fontTextInGame = gfx.setNewFont("fonts/text-font.ttf",16)
   end

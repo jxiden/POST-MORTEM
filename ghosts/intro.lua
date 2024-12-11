@@ -2,7 +2,6 @@ local Talkies = require('libraries/talkies')
 
 local Satan = {}
 local avatar;
-local blop
 
 Talkies.font = fontTextInGame
 
@@ -20,6 +19,8 @@ function Satan.sayHello()
       typedNotTalked=true,
       textSpeed="slow",
     })
+  INTERVIEW=INTERVIEW+1
+  print(INTERVIEW)
 end
 
 return Satan

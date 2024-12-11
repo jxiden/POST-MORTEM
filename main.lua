@@ -43,11 +43,8 @@ function love.load()
   intro = require "ghosts/intro"
   ghost1 = require "ghosts/ghost1"
   
-  if INTERVIEW == 0 then 
-    intro.sayHello()
-  elseif INTERVIEW == 1 then
-    ghost1.sayHello()
-  end
+  if INTERVIEW == 0 then intro.sayHello() end
+  if INTERVIEW == 1 then ghost1.sayHello() end
   
   require "bghandler"
   loadBackgrounds()
