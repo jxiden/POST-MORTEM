@@ -154,6 +154,7 @@ function ghost3.next()
   GAMEMODE = 0
   INTERVIEW = 0
   bgID = 0
+  ghostIntro.sayHello()
 end
 
 return ghost3

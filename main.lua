@@ -3,7 +3,7 @@ anim8 = require 'libraries/anim8'
 tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 3
+GAMEMODE = 0
 INTERVIEW = 0
 ghostID = 0
 bgID = 0
