@@ -46,7 +46,8 @@ function love.load()
 end
 
 function love.update(dt)
-  mausx, mausy = love.mouse.getPosition()  
+  collectgarbage("collect")
+  --mausx, mausy = love.mouse.getPosition()  
   if GAMEMODE == 0 then
     ssLen = 4
     colors_SS=fadeInBLK
@@ -95,8 +96,6 @@ end
 
 
 function love.draw()
-  
-  
   if GAMEMODE == 0 then
     SplashScreen()
   elseif GAMEMODE == 1 then
@@ -111,6 +110,10 @@ function love.draw()
 end
 
 function love.keypressed(key)
+  if key == "f" then
+      fullscreen = not fullscreen
+      love.window.setFullscreen(fullscreen, "exclusive")
+    end
   if GAMEMODE == 1 then
     if ttlOption == 0 then
       if key == "down" then
@@ -145,10 +148,6 @@ function love.keypressed(key)
       end
     end  
   elseif GAMEMODE == 2 then 
-    if key == "return" and optionSelect == 0 then
-      fullscreen = not fullscreen
-      love.window.setFullscreen(fullscreen, "exclusive")
-    end
   elseif GAMEMODE == 3 then
     if key == "return" or key=="space" then 
       Talkies.onAction()
@@ -177,7 +176,6 @@ function TitleScreen()
   gfx.draw(img2) 
   gfx.setColor(1,1,1)
   gfx.print("POST-MORTEM",fontTitle,20,100)
-  gfx.print(mausx,fontDebug,mausx,mausy+100)
   
   option1x=210 --option 1 on menu
   option23x=260 --options 2 and 3 on menu
@@ -257,12 +255,12 @@ function Credits()
   gfx.print(creditsStartPos,fontDebug,0,0)
 end
 function creditsUpdate(dt)
-  creditsStartPos=creditsStartPos-(dt*40)
+  creditsStartPos=creditsStartPos-(dt*14)
   ns_y = creditsStartPos+credSpacing*24
   if math.floor(ns_y) <= 44 then
     ns_y = 44
     end
-  if creditsStartPos >= 1100 then
+  if creditsStartPos <= -1100 then
       mus_credits:stop()
       GAMEMODE=0
   end
