@@ -8,7 +8,7 @@ Talkies.font = fontTextInGame
 function ghost2.sayHello()
   f_sprite = gfx.newImage("sprites/ghosts/g2-0.png")
 
-  Talkies.say("...", "Hello  there  youngster.",
+  Talkies.say("...", "Oh god, I'm finally here.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -22,7 +22,7 @@ function ghost2.sayHello()
 end
 
 function ghost2.name()
-    Talkies.say("Francis", "My  name  is  Francis  Hatt",
+    Talkies.say("Mickey", "My name is Michael Lopez. But people call me Mickey.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -36,7 +36,9 @@ function ghost2.name()
 end
 
 function ghost2.life()
-    Talkies.say("Francis", "I  had  a  pleasant  life.  My  wife  Mabel  and  I  owned  a  small  farm  in  Louisa  County.  We  sold  eggs  to  locals  and  took  care  of  a  few  cows,  cats,  and  chickens.  My  wife  was  usually  the  one  taking  care  of  her  garden,  but  I  helped  her  out  too.",
+    Talkies.say("Mickey", { "I was born on July 27th 1985. --Height of the cocaine boom.",
+        "My father was a local drug guy. -- Worked for The Corporation under Jose Battle. He made millions from the trade.", 
+        "Didn’t find out until I was order that that’s how mama got me through college."},
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -50,7 +52,7 @@ function ghost2.life()
 end
 
 function ghost2.proud()
-    Talkies.say("Francis", "I’m  proud  of  being  able  to  care  for  my  community  and  my  lovely  wife.",
+    Talkies.say("Mickey", { "I was a quick thinking kid, -- I knew how to keep myself out of trouble while causing it. It made me popular. I had every girl in every school swooning over me and yet I didn’t want any of them. I guess you could say that I’m proud of myself for living my truth. But if you want a real answer, I had sex with Ricky Martin once. I never returned his calls. I wasn’t into iving “la vida loca.”  ",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -64,7 +66,7 @@ function ghost2.proud()
 end
 
 function ghost2.love()
-    Talkies.say("Francis", "My  wife.",
+    Talkies.say("Mickey", "My  wife.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -78,7 +80,7 @@ function ghost2.love()
 end
 
 function ghost2.regret()
-    Talkies.say("Francis", "Not  having  children.  I  wish  I  had  someone  to  pass  everything  down  to.  I  hope  someone  finds  the  farm  and  takes  care  of  it.",
+    Talkies.say("Mickey", "Not  having  children.  I  wish  I  had  someone  to  pass  everything  down  to.  I  hope  someone  finds  the  farm  and  takes  care  of  it.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -92,7 +94,7 @@ function ghost2.regret()
 end
 
 function ghost2.afterlife()
-    Talkies.say("Francis", "I’m  not  sure,  but  I hope  it’s  kind  to  me.",
+    Talkies.say("Mickey", "I’m  not  sure,  but  I hope  it’s  kind  to  me.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
