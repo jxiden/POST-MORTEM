@@ -15,7 +15,7 @@ function loadBackgrounds()
     bg2.spriteSheet = gfx.newImage("sprites/bgs/bg2-sprite.png")
     bg2.grid = anim8.newGrid(800,600, bg2.spriteSheet:getWidth(), bg2.spriteSheet:getHeight())
     
-    bg2.animation = anim8.newAnimation(bg2.grid('1-5', '1-4'),0.1)
+    bg2.animation = anim8.newAnimation(bg2.grid('1-5', '1-3'),0.2)
     
   bg3 = {}
     bg3.spriteSheet = gfx.newImage("sprites/bgs/bg3-sprite.png")
@@ -27,32 +27,37 @@ function loadBackgrounds()
     bg4.spriteSheet = gfx.newImage("sprites/bgs/bg4-sprite.png")
     bg4.grid = anim8.newGrid(800,600, bg4.spriteSheet:getWidth(), bg4.spriteSheet:getHeight())
     
-    bg4.animation = anim8.newAnimation(bg4.grid('1-5', '1-3'),0.2)
+    bg4.animation = anim8.newAnimation(bg4.grid('1-5', '1-4'),0.1)
     
-  bg6 = {}
-    bg6.spriteSheet = gfx.newImage("sprites/bgs/bg6-sprite.png")
-    bg6.grid = anim8.newGrid(800,600, bg6.spriteSheet:getWidth(), bg6.spriteSheet:getHeight())
+  bg5 = {}
+    bg5.spriteSheet = gfx.newImage("sprites/bgs/bg5-sprite.png")
+    bg5.grid = anim8.newGrid(800,600, bg5.spriteSheet:getWidth(), bg5.spriteSheet:getHeight())
     
-    bg6.animation = anim8.newAnimation(bg6.grid('1-5', '1-3'),0.2)
+    bg5.animation = anim8.newAnimation(bg5.grid('1-5', '1-3'),0.2)
     
 end
 
 function bg_update(dt)
-  if INTERVIEW == 0 then 
-    bg0.animation:update(dt)
-  elseif INTERVIEW == 1 then bg1.animation:update(dt) 
-  elseif INTERVIEW == 2 then bg2.animation:update(dt) 
-  elseif INTERVIEW == 3 then bg3.animation:update(dt) end
+  if bgID == 0 then bg0.animation:update(dt)
+  elseif bgID == 1 then bg1.animation:update(dt) 
+  elseif bgID == 2 then bg2.animation:update(dt) 
+  elseif bgID == 3 then bg3.animation:update(dt) 
+  elseif bgID == 4 then bg4.animation:update(dt) 
+  elseif bgID == 5 then bg5.animation:update(dt) end
 end
 
 function bg_draw()
-  if INTERVIEW == 0 then 
+  if bgID == 0 then 
     bg0.animation:draw(bg0.spriteSheet,0,0)
-  elseif INTERVIEW == 1 then 
+  elseif bgID == 1 then 
     bg1.animation:draw(bg1.spriteSheet,0,0)
-  elseif INTERVIEW == 2 then 
+  elseif bgID == 2 then 
     bg2.animation:draw(bg2.spriteSheet,0,0) 
-  elseif INTERVIEW == 3 then 
+  elseif bgID == 3 then 
     bg3.animation:draw(bg3.spriteSheet,0,0) 
-    end
+  elseif bgID == 4 then 
+    bg4.animation:draw(bg4.spriteSheet,0,0) 
+  elseif bgID == 5 then 
+    bg5.animation:draw(bg5.spriteSheet,0,0) 
+  end
 end

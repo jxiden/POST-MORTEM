@@ -44,7 +44,7 @@ function ghost1.life()
       textSpeed="slow",
       
       options={
-        {"What  accomplishments  are  you  proud  of?", function() ghost1.proud() end},
+        {"What  achievements  are  you  proud  of?", function() ghost1.proud() end},
       }
     })
 end
@@ -78,7 +78,7 @@ function ghost1.love()
 end
 
 function ghost1.regret()
-    Talkies.say("Francis", "Not  having  children.  I  wish  I  had  someone  to  pass  everything  down  to.  I  hope  someone  finds  the  farm  and  takes  care  of  it.",
+    Talkies.say("Francis", "Not  having  children.  I  wish  I  had  someone  to  pass  everything  down  to.  I  hope  someone  finds  the  farm  and  takes  care  of  it someday.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -105,6 +105,54 @@ function ghost1.afterlife()
         {"limbo", function() ghost1.limbo() end},
       }
     })
+end
+
+function ghost1.good()
+  bgID = bgID+1
+  Talkies.say("?????", {"you've sent Francis to the good afterlife."},
+    {
+      talkSound=sfx_talk_u,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"continue", function() ghost1.next() end},
+      }
+    })
+end
+
+function ghost1.bad()
+  bgID = bgID+1
+  Talkies.say("?????", {"you've sent Francis to the bad afterlife."},
+    {
+      talkSound=sfx_talk_u,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"continue", function() ghost1.next() end},
+      }
+    })
+end
+
+function ghost1.limbo()
+  bgID = bgID+1
+  Talkies.say("?????", {"you've kept Francis in limbo."},
+    {
+      talkSound=sfx_talk_u,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"continue", function() ghost1.next() end},
+      }
+    })
+end
+
+function ghost1.next()
+  INTERVIEW = INTERVIEW+1
+  bgID = bgID+1
+  ghost2.sayHello()
 end
 
 return ghost1

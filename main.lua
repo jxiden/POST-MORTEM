@@ -3,8 +3,9 @@ anim8 = require 'libraries/anim8'
 tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 1
+GAMEMODE = 0
 INTERVIEW = 0
+bgID = 0
 
 ghosts_morality = {0,9,3,5,2,1}
 
@@ -43,14 +44,12 @@ function love.load()
   ghostIntro = require "ghosts/intro"
   ghost1 = require "ghosts/ghost1"
   ghost2 = require "ghosts/ghost2"
-  
-  if INTERVIEW == 0 then ghostIntro.sayHello() 
-  elseif INTERVIEW == 1 then ghost1.sayHello()
-  elseif INTERVIEW == 2 then ghost2.sayHello()end
-  
+  ghost3 = require "ghosts/ghost3"
+    
+  ghostIntro.sayHello()
+    
   require "bghandler"
   loadBackgrounds()
-
 end
 
 function love.update(dt)
@@ -139,7 +138,7 @@ function love.keypressed(key)
         ttlOption = 1
         snd.stop(sfx_ttlSelect)
         sfx_ttlSelect:play()
-      elseif key == "return" then
+      elseif key == "return" or key == "space" then
         mus_title:stop()
         GAMEMODE = 3
       end
@@ -161,7 +160,7 @@ function love.keypressed(key)
         ttlOption = 0 
         snd.stop(sfx_ttlSelect)
         sfx_ttlSelect:play()  
-      elseif key == "return" then
+      elseif key == "return" or key == "space" then
         mus_title:stop()
         GAMEMODE = 4
       end
@@ -304,4 +303,4 @@ end
 
 function BlackToWhite()
   gfx.setBackgroundColor(bgclr.r/100,bgclr.g/100,bgclr.b/100)
-  end
+end

@@ -46,7 +46,7 @@ function ghost2.life()
       textSpeed="slow",
       
       options={
-        {"What  accomplishments  are  you  proud  of?", function() ghost2.proud() end},
+        {"What  achievements  are  you  proud  of?", function() ghost2.proud() end},
       }
     })
 end
@@ -121,6 +121,54 @@ function ghost2.afterlife()
         {"limbo", function() ghost2.limbo() end},
       }
     })
+end
+
+function ghost2.good()
+  bgID = bgID+1
+  Talkies.say("?????", {"you've sent Ricky to the good afterlife."},
+    {
+      talkSound=sfx_talk_u,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"continue", function() ghost2.next() end},
+      }
+    })
+end
+
+function ghost2.bad()
+  bgID = bgID+1
+  Talkies.say("?????", {"you've sent Ricky to the bad afterlife."},
+    {
+      talkSound=sfx_talk_u,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"continue", function() ghost2.next() end},
+      }
+    })
+end
+
+function ghost2.limbo()
+  bgID = bgID+1
+  Talkies.say("?????", {"you've kept Ricky in limbo."},
+    {
+      talkSound=sfx_talk_u,
+      typedNotTalked=true,
+      textSpeed="slow",
+      
+      options={
+        {"continue", function() ghost2.next() end},
+      }
+    })
+end
+
+function ghost2.next()
+  INTERVIEW = INTERVIEW+1
+  bgID = bgID+1
+  ghost3.sayHello()
 end
 
 return ghost2
