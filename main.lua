@@ -84,15 +84,6 @@ function love.update(dt)
       fade2:update(dt)
     end
   elseif GAMEMODE == 1 then
-    --if mausx >= 210 and mausx <= 590 then 
-      --if mausy >= 300 and mausy <360 then
-       -- ttlOption = 0
-      --elseif mausy >= 360 and mausy <420 then
-       -- ttlOption = 1
-      --elseif mausy >= 420 and mausy <480 then
-       -- ttlOption = 2
-      --end
-    --end 
   elseif GAMEMODE == 2 then 
   elseif GAMEMODE == 3 then
     Talkies.update(dt)
