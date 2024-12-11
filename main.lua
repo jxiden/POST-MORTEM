@@ -3,8 +3,10 @@ anim8 = require 'libraries/anim8'
 tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 3
+GAMEMODE = 0
 INTERVIEW = 0
+
+ghosts_morality = {0,9,3,5,2,1}
 
 isFullScreen = false
 
@@ -259,14 +261,21 @@ function Credits()
   gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*22)
   gfx.print("thank you for playing!",fontCredits,credX,creditsStartPos+credSpacing*23)
   noiseSyndicate = gfx.newImage("sprites/noise.png")
-  gfx.draw(noiseSyndicate,credX,ns_y)
+  gfx.draw(noiseSyndicate,credX,nsY)
+  gfx.print("POST-MORTEM",fontTitle,credX,pmY)
   gfx.print(creditsStartPos,fontDebug,0,0)
 end
 function creditsUpdate(dt)
-  creditsStartPos=creditsStartPos-(dt*14)
-  ns_y = creditsStartPos+credSpacing*24
-  if math.floor(ns_y) <= 44 then
-    ns_y = 44
+  creditsStartPos=creditsStartPos-(dt*40)
+  pmY = creditsStartPos+credSpacing*24
+  pmYlock = 44
+  nsY = creditsStartPos+credSpacing*26
+  nsYlock = 164
+  if math.floor(nsY) <= nsYlock then
+    nsY = nsYlock
+  end
+  if math.floor(pmY) <= pmYlock then
+    pmY = pmYlock
     end
   if creditsStartPos <= -1100 then
       mus_credits:stop()

@@ -14,12 +14,12 @@
 --4: CREDITS
 
 --INTERVIEW
---0: INTRO 
---1: FRANCIS HATT 
---2: 
---3:
---4: 
---5:
+--0: INTRO (satan)
+--1: FRANCIS HATT (9 morality)
+--2: LEAH ABATE (3 morality)
+--3: "RICKY" LOPEZ (5 morality) 
+--4: arsonist (3 morality)
+--5: dictator (1 morality
 
 SCRIPTING: 
 
@@ -28,8 +28,3 @@ TUTORIAL/INTRO DIALOGUE:
 ???: pleased to meet you! won't you guess my name? you're probably wondering why you're here instead of spending your precious afterlife ding something relaxing. well, you've somehow lived the most neutral life possible. i don't know how you did it, but you did, and now i've selected you to become my new secretary! your new job is to wait at the gates of our precious little limbo and interview the recently deceased, ya got it? alright. have fun!
 
 
-Francis Hatt: 
-
-Sean Skelton:
-
-Eric Kluson: 
