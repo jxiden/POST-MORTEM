@@ -99,6 +99,11 @@ function love.update(dt)
     MainGameUpdate()
     bg_update(dt)
   elseif GAMEMODE == 4 then
+    if creditsStartPos<-1100 then
+      credX = 20
+      creditsStartPos = 600
+      creditSpeed = 12
+    end
     creditsUpdate(dt)
   end
 
@@ -235,12 +240,11 @@ end
 
 function MainGameUpdate()
 end
-function Credits()
+function Credits()  
   mus_credits:play()
   gfx.setColor(1,1,1)
-  tempBG = gfx.newImage("sprites/tempBG.jpg")
-  gfx.setColor(0,0,0.5)
-  gfx.draw(tempBG)
+  creditsBG = gfx.newImage("sprites/creditsBG.png")
+  gfx.draw(creditsBG)
   gfx.setColor(0,0,0)
   gfx.rectangle("fill",0,0,180,600)
   gfx.setColor(1,1,1)
@@ -250,7 +254,7 @@ function Credits()
   gfx.print("desi",fontCreditsSmall,credX,creditsStartPos+credSpacing*3)
   gfx.print("art direction:",fontCredits,credX,creditsStartPos+credSpacing*4)
   gfx.print("jaiden",fontCreditsSmall,credX,creditsStartPos+credSpacing*5)
-  gfx.print("art assets:",fontCredits,credX,creditsStartPos+credSpacing*6)
+  gfx.print("art assets & fonts:",fontCredits,credX,creditsStartPos+credSpacing*6)
   gfx.print("jaiden",fontCreditsSmall,credX,creditsStartPos+credSpacing*7)
   gfx.print("music & sfx:",fontCredits,credX,creditsStartPos+credSpacing*8)
   gfx.print("desi",fontCreditsSmall,credX,creditsStartPos+credSpacing*9)
