@@ -35,6 +35,12 @@ function loadBackgrounds()
     
     bg5.animation = anim8.newAnimation(bg5.grid('1-5', '1-3'),0.2)
     
+  bg6 = {}
+    bg6.spriteSheet = gfx.newImage("sprites/bgs/bg6-sprite.png")
+    bg6.grid = anim8.newGrid(800,600, bg5.spriteSheet:getWidth(), bg6.spriteSheet:getHeight())
+    
+    bg6.animation = anim8.newAnimation(bg6.grid('1-5', '1-3'),0.1)
+    
 end
 
 function bg_update(dt)
@@ -43,7 +49,8 @@ function bg_update(dt)
   elseif bgID == 2 then bg2.animation:update(dt) 
   elseif bgID == 3 then bg3.animation:update(dt) 
   elseif bgID == 4 then bg4.animation:update(dt) 
-  elseif bgID == 5 then bg5.animation:update(dt) end
+  elseif bgID == 5 then bg5.animation:update(dt) 
+  elseif bgID == 6 then bg6.animation:update(dt) end
 end
 
 function bg_draw()
@@ -59,5 +66,7 @@ function bg_draw()
     bg4.animation:draw(bg4.spriteSheet,0,0) 
   elseif bgID == 5 then 
     bg5.animation:draw(bg5.spriteSheet,0,0) 
+  elseif bgID == 6 then 
+    bg6.animation:draw(bg6.spriteSheet,0,0) 
   end
 end
