@@ -3,7 +3,7 @@ anim8 = require 'libraries/anim8'
 tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
-GAMEMODE = 0
+GAMEMODE = 4
 INTERVIEW = 0
 
 ghosts_morality = {0,9,3,5,2,1}
@@ -20,6 +20,7 @@ ttlOption = 0
   credSpacing=40
   credX = 20
   creditsStartPos = 600
+  creditSpeed = 12
 
 function love.load()
   --setup
@@ -165,6 +166,12 @@ function love.keypressed(key)
     elseif key == "down" then 
       Talkies.nextOption()
     end
+  elseif GAMEMODE == 4 then
+    if key == "space" then
+      creditSpeed = 40
+    else 
+      creditsSpeed = 12
+    end
   end
 
 end
@@ -232,6 +239,7 @@ function Credits()
   mus_credits:play()
   gfx.setColor(1,1,1)
   tempBG = gfx.newImage("sprites/tempBG.jpg")
+  gfx.setColor(0,0,0.5)
   gfx.draw(tempBG)
   gfx.setColor(0,0,0)
   gfx.rectangle("fill",0,0,180,600)
@@ -239,38 +247,38 @@ function Credits()
   gfx.print("POST-MORTEM",fontTitle,credX,creditsStartPos)
   gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*1)
   gfx.print("lead design:",fontCredits,credX,creditsStartPos+credSpacing*2)
-  gfx.print("desi",fontCredits,credX,creditsStartPos+credSpacing*3)
+  gfx.print("desi",fontCreditsSmall,credX,creditsStartPos+credSpacing*3)
   gfx.print("art direction:",fontCredits,credX,creditsStartPos+credSpacing*4)
-  gfx.print("jaiden",fontCredits,credX,creditsStartPos+credSpacing*5)
+  gfx.print("jaiden",fontCreditsSmall,credX,creditsStartPos+credSpacing*5)
   gfx.print("art assets:",fontCredits,credX,creditsStartPos+credSpacing*6)
-  gfx.print("jaiden",fontCredits,credX,creditsStartPos+credSpacing*7)
+  gfx.print("jaiden",fontCreditsSmall,credX,creditsStartPos+credSpacing*7)
   gfx.print("music & sfx:",fontCredits,credX,creditsStartPos+credSpacing*8)
-  gfx.print("desi",fontCredits,credX,creditsStartPos+credSpacing*9)
+  gfx.print("desi",fontCreditsSmall,credX,creditsStartPos+credSpacing*9)
   gfx.print("programming:",fontCredits,credX,creditsStartPos+credSpacing*10)
-  gfx.print("desi & jaiden",fontCredits,credX,creditsStartPos+credSpacing*11)
+  gfx.print("desi & jaiden",fontCreditsSmall,credX,creditsStartPos+credSpacing*11)
   gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*12)
   gfx.print("libraries used:",fontCredits,credX,creditsStartPos+credSpacing*13)
-  gfx.print("anim8",fontCredits,credX,creditsStartPos+credSpacing*14)
-  gfx.print("talkies.lua",fontCredits,credX,creditsStartPos+credSpacing*15)
-  gfx.print("tween.lua",fontCredits,credX,creditsStartPos+credSpacing*16)
+  gfx.print("anim8",fontCreditsSmall,credX,creditsStartPos+credSpacing*14)
+  gfx.print("talkies.lua",fontCreditsSmall,credX,creditsStartPos+credSpacing*15)
+  gfx.print("tween.lua",fontCreditsSmall,credX,creditsStartPos+credSpacing*16)
   gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*17)
   gfx.print("special thanks",fontCredits,credX,creditsStartPos+credSpacing*18)
-  gfx.print("niko baletin",fontCredits,credX,creditsStartPos+credSpacing*19)
-  gfx.print("lee tusman",fontCredits,credX,creditsStartPos+credSpacing*20)
-  gfx.print("windows97",fontCredits,credX,creditsStartPos+credSpacing*21)
+  gfx.print("niko baletin",fontCreditsSmall,credX,creditsStartPos+credSpacing*19)
+  gfx.print("lee tusman",fontCreditsSmall,credX,creditsStartPos+credSpacing*20)
+  gfx.print("windows97",fontCreditsSmall,credX,creditsStartPos+credSpacing*21)
   gfx.print("",fontCredits,credX,creditsStartPos+credSpacing*22)
-  gfx.print("thank you for playing!",fontCredits,credX,creditsStartPos+credSpacing*23)
+  gfx.print("thank you for playing!",fontCreditsSmall,credX,creditsStartPos+credSpacing*23)
   noiseSyndicate = gfx.newImage("sprites/noise.png")
   gfx.draw(noiseSyndicate,credX,nsY)
   gfx.print("POST-MORTEM",fontTitle,credX,pmY)
   gfx.print(creditsStartPos,fontDebug,0,0)
 end
 function creditsUpdate(dt)
-  creditsStartPos=creditsStartPos-(dt*40)
-  pmY = creditsStartPos+credSpacing*24
+  creditsStartPos=creditsStartPos-(dt*creditSpeed)
+  pmY = creditsStartPos+credSpacing*25
   pmYlock = 44
-  nsY = creditsStartPos+credSpacing*26
-  nsYlock = 164
+  nsY = creditsStartPos+credSpacing*27
+  nsYlock = 124
   if math.floor(nsY) <= nsYlock then
     nsY = nsYlock
   end
@@ -279,7 +287,7 @@ function creditsUpdate(dt)
     end
   if creditsStartPos <= -1100 then
       mus_credits:stop()
-      GAMEMODE=0
+      GAMEMODE=1
   end
 end
 
