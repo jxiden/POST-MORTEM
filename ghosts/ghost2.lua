@@ -11,7 +11,7 @@ function ghost2.sayHello()
   Talkies.say("...", "Oh god, I'm finally here.",
     {
       image=f_sprite,
-      talkSound=sfx_talk_f,
+      talkSound=sfx_talk_r,
       typedNotTalked=true,
       textSpeed="slow",
 
@@ -22,10 +22,10 @@ function ghost2.sayHello()
 end
 
 function ghost2.name()
-    Talkies.say("Mickey", "My name is Michael Lopez. But people call me Mickey.",
+    Talkies.say("Ricky", "My name is Richard Lopez. But people call me Ricky.",
     {
       image=f_sprite,
-      talkSound=sfx_talk_f,
+      talkSound=sfx_talk_r,
       typedNotTalked=true,
       textSpeed="slow",
       
@@ -36,12 +36,12 @@ function ghost2.name()
 end
 
 function ghost2.life()
-    Talkies.say("Mickey", { "I was born on July 27th 1985. --Height of the cocaine boom.",
+    Talkies.say("Ricky", { "I was born on July 27th 1985. --Height of the cocaine boom.",
         "My father was a local drug guy. -- Worked for The Corporation under Jose Battle. He made millions from the trade.", 
-        "Didn’t find out until I was order that that’s how mama got me through college."},
+        "Didn’t find out until I was older that that’s how mama got me through college."},
     {
       image=f_sprite,
-      talkSound=sfx_talk_f,
+      talkSound=sfx_talk_r,
       typedNotTalked=true,
       textSpeed="slow",
       
@@ -52,10 +52,16 @@ function ghost2.life()
 end
 
 function ghost2.proud()
-    Talkies.say("Mickey", { "I was a quick thinking kid, -- I knew how to keep myself out of trouble while causing it. It made me popular. I had every girl in every school swooning over me and yet I didn’t want any of them. I guess you could say that I’m proud of myself for living my truth. But if you want a real answer, I had sex with Ricky Martin once. I never returned his calls. I wasn’t into iving “la vida loca.”  ",
+    Talkies.say("Ricky", {"I was a quick thinking kid, -- I knew how to keep myself out of trouble while causing it.",
+        "It made me popular.",
+        "I had every girl in every school swooning over me and yet I didn’t want any of them.",
+        "...",
+        "I guess you could say that I’m proud of myself -- for living my truth.",
+        "But if you want a real answer, -- I had sex with Ricky Martin once. -- I never returned his calls.",
+        "I wasn’t into living la vida loca. "},
     {
       image=f_sprite,
-      talkSound=sfx_talk_f,
+      talkSound=sfx_talk_r,
       typedNotTalked=true,
       textSpeed="slow",
       
@@ -66,10 +72,11 @@ function ghost2.proud()
 end
 
 function ghost2.love()
-    Talkies.say("Mickey", "My  wife.",
+    Talkies.say("Ricky", {"I love rock climbing. --Getting into it gave me a space to meet a lot of wonderful friends whom I care for deeply, including my boyfriend who motivated me a lot to do better.",
+      "I think rock climbing improved who I was as a person."},
     {
       image=f_sprite,
-      talkSound=sfx_talk_f,
+      talkSound=sfx_talk_r,
       typedNotTalked=true,
       textSpeed="slow",
       
@@ -80,10 +87,15 @@ function ghost2.love()
 end
 
 function ghost2.regret()
-    Talkies.say("Mickey", "Not  having  children.  I  wish  I  had  someone  to  pass  everything  down  to.  I  hope  someone  finds  the  farm  and  takes  care  of  it.",
+    Talkies.say("Ricky", {"Not being kinder to the people I loved.",
+        "I grew up in tough places.",
+        "I couldn’t peel back except to my boyfriend. -- He was really the only one I could trust.",
+        "I remember fighting with my mother so much. -- she was ashamed of who I was. She would always ask me when I'd start being normal.",
+        "When I got on line here we hadn’t spoken in 3 years. -- I don’t even know if she knows I’m dead or not.",
+        "It’s been eating at me since I got here."},
     {
       image=f_sprite,
-      talkSound=sfx_talk_f,
+      talkSound=sfx_talk_r,
       typedNotTalked=true,
       textSpeed="slow",
       
@@ -94,10 +106,12 @@ function ghost2.regret()
 end
 
 function ghost2.afterlife()
-    Talkies.say("Mickey", "I’m  not  sure,  but  I hope  it’s  kind  to  me.",
+    Talkies.say("Ricky", {"I don’t know, I honestly didn’t think there was one.",
+        "And if there was, I sure as hell wasn't going to heaven, -- pun intended.",
+        "I'm ready for anything. I have a lot to think about in my afterlife."},
     {
       image=f_sprite,
-      talkSound=sfx_talk_f,
+      talkSound=sfx_talk_r,
       typedNotTalked=true,
       textSpeed="slow",
       

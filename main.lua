@@ -44,7 +44,7 @@ function love.load()
   ghost1 = require "ghosts/ghost1"
   ghost2 = require "ghosts/ghost2"
   
-  if INTERVIEW == 0 then ghost2.sayHello() 
+  if INTERVIEW == 0 then ghostIntro.sayHello() 
   elseif INTERVIEW == 1 then ghost1.sayHello()
   elseif INTERVIEW == 2 then ghost2.sayHello()end
   
