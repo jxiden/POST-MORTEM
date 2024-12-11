@@ -4,7 +4,7 @@ tween = require 'libraries/tween'
 
 --CHANGE GAMEMODE/GAMEPLAYMODE HERE IF YOU WISH TO DEBUG INDIVIDUAL THINGS
 GAMEMODE = 3
-INTERVIEW = 1
+INTERVIEW = 0
 
 isFullScreen = false
 
@@ -26,23 +26,29 @@ function love.load()
   
   ssTimer = 0
   
+  --music/sfx
+  snd = love.audio
+  require "sounds"
+  loadSounds()
+  
   --graphics
   gfx = love.graphics
   require "gfx"
   require "shaders"
   loadGraphics()
   loadFonts()
-  ghost1 = require "ghost1"
+  intro = require "ghosts/intro"
+  ghost1 = require "ghosts/ghost1"
   
-  ghost1.sayHello()
+  if INTERVIEW == 0 then 
+    intro.sayHello()
+  elseif INTERVIEW == 1 then
+    ghost1.sayHello()
+  end
   
   require "bghandler"
   loadBackgrounds()
-  
-  --music/sfx
-  snd = love.audio
-  require "sounds"
-  loadSounds()
+
 end
 
 function love.update(dt)
@@ -87,6 +93,7 @@ function love.update(dt)
   elseif GAMEMODE == 2 then 
   elseif GAMEMODE == 3 then
     Talkies.update(dt)
+    MainGameUpdate()
     bg_update(dt)
   elseif GAMEMODE == 4 then
     creditsUpdate(dt)
@@ -217,7 +224,8 @@ function MainGameLoop()
   Talkies.draw()
 end
 
-
+function MainGameUpdate()
+end
 function Credits()
   mus_credits:play()
   gfx.setColor(1,1,1)
