@@ -8,7 +8,7 @@ Talkies.font = fontTextInGame
 function ghost3.sayHello()
   f_sprite = gfx.newImage("sprites/ghosts/g3-0.png")
 
-  Talkies.say("...", "Hello  there  youngster.",
+  Talkies.say("...", "Hello...",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -22,7 +22,7 @@ function ghost3.sayHello()
 end
 
 function ghost3.name()
-    Talkies.say("Francis", "My  name  is  Francis  Hatt",
+    Talkies.say("Leah", "Leah Abate",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -36,7 +36,7 @@ function ghost3.name()
 end
 
 function ghost3.life()
-    Talkies.say("Francis", "I  had  a  pleasant  life.  My  wife  Mabel  and  I  owned  a  small  farm  in  Louisa  County.  We  sold  eggs  to  locals  and  took  care  of  a  few  cows,  cats,  and  chickens.  My  wife  was  usually  the  one  taking  care  of  her  garden,  but  I  helped  her  out  too.",
+    Talkies.say("Leah", "Ever since I was a young girl I was told that God and Jesus loved me. And who could blame them, I was a shining light. Every night I would pray that I would meet Jesus and eventually he started talking back. When I was alone in the world he was there for me.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -50,7 +50,7 @@ function ghost3.life()
 end
 
 function ghost3.proud()
-    Talkies.say("Francis", "I’m  proud  of  being  able  to  care  for  my  community  and  my  lovely  wife.",
+    Talkies.say("Leah", "Being myself.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -64,7 +64,7 @@ function ghost3.proud()
 end
 
 function ghost3.love()
-    Talkies.say("Francis", "My  wife.",
+    Talkies.say("Leah", "All I love is myself and my love, the lord.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -78,7 +78,7 @@ function ghost3.love()
 end
 
 function ghost3.regret()
-    Talkies.say("Francis", "Not  having  children.  I  wish  I  had  someone  to  pass  everything  down  to.  I  hope  someone  finds  the  farm  and  takes  care  of  it.",
+    Talkies.say("Leah", "Not having died sooner, I miss my home in Heaven.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -92,7 +92,7 @@ function ghost3.regret()
 end
 
 function ghost3.afterlife()
-    Talkies.say("Francis", "I’m  not  sure,  but  I hope  it’s  kind  to  me.",
+    Talkies.say("Leah", "I know where I'm going, back to my love's glorious kingdom.",
     {
       image=f_sprite,
       talkSound=sfx_talk_f,
@@ -109,7 +109,7 @@ end
 
 function ghost3.good()
   bgID = bgID+1
-  Talkies.say("?????", {"you've sent Francis to the good afterlife."},
+  Talkies.say("?????", {"you've sent Leah to the good afterlife.", "this is the end of the demo, thanks for playing!"},
     {
       talkSound=sfx_talk_u,
       typedNotTalked=true,
@@ -123,7 +123,7 @@ end
 
 function ghost3.bad()
   bgID = bgID+1
-  Talkies.say("?????", {"you've sent Francis to the bad afterlife."},
+  Talkies.say("?????", {"you've sent Leah to the bad afterlife.", "this is the end of the demo, thanks for playing!"},
     {
       talkSound=sfx_talk_u,
       typedNotTalked=true,
@@ -137,7 +137,7 @@ end
 
 function ghost3.limbo()
   bgID = bgID+1
-  Talkies.say("?????", {"you've kept Francis in limbo."},
+  Talkies.say("?????", {"you've kept Leah in limbo.", "this is the end of the demo, thanks for playing!"},
     {
       talkSound=sfx_talk_u,
       typedNotTalked=true,
