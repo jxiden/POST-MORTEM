@@ -7,7 +7,7 @@ local blop
 Talkies.font = fontTextInGame
 
 function Creature.sayHello()
-  f_sprite = gfx.newImage("sprites/g1-1.png")
+  f_sprite = gfx.newImage("sprites/ghosts/g1-0.png")
 
   Talkies.say("...", "Hello there youngster.",
     {
